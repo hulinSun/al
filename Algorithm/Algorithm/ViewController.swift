@@ -38,7 +38,8 @@ class ViewController: UIViewController {
 //        Greedy.GreedyTest()
 //        DivideConquer.DivideConquerTest()
 //        DP.test()
-        ArrayList.twoSum()
+//        ArrayList.twoSum()
+        Lee1.test()
     }
 
     
