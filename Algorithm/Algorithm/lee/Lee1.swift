@@ -42,19 +42,29 @@ class Lee1 {
         return false
     }
     
+    /// 消消乐解法
+    class func isValidStr2(_ s: String) -> Bool {
+        var str = s
+        for _ in 0..<3 {
+            str = str.replacingOccurrences(of: "()", with: "")
+            str = str.replacingOccurrences(of: "{}", with: "")
+            str = str.replacingOccurrences(of: "[]", with: "")
+        }
+        return str.count == 0
+    }
 }
 
 
 
 extension Lee1 {
     class func test() {
-        print(isValidStr("()"))
-        print(isValidStr("()[]"))
-        print(isValidStr("()[]["))
-        print(isValidStr("()[][[]]"))
-        print(isValidStr("([[]]"))
-        print(isValidStr("(]"))
-        print(isValidStr("([)]"))
-        print(isValidStr("([{}])"))
+        print(isValidStr2("()"))
+        print(isValidStr2("()[]"))
+        print(isValidStr2("()[]["))
+        print(isValidStr2("()[][[]]"))
+        print(isValidStr2("([[]]"))
+        print(isValidStr2("(]"))
+        print(isValidStr2("([)]"))
+        print(isValidStr2("([{}])"))
     }
 }
