@@ -268,7 +268,6 @@
 				1A4B40E4256C04F000334A38 /* Set */,
 				1AF0771B255C45AE000D11E5 /* print */,
 				1A8E26672556E59700D11FF0 /* Tree */,
-				1AE5D913254805990032404B /* leecode */,
 				1AE5D9022545EDAC0032404B /* LinkedList */,
 				1A77BA35254564BF00C8DE24 /* ArrayList */,
 				1A77BA2C25455EA400C8DE24 /* 斐波那契 */,
@@ -398,13 +397,6 @@
 				1A8E2661255304B500D11FF0 /* CircleQueue.swift */,
 			);
 			path = LinkedList;
-			sourceTree = "<group>";
-		};
-		1AE5D913254805990032404B /* leecode */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = leecode;
 			sourceTree = "<group>";
 		};
 		1AF0771B255C45AE000D11E5 /* print */ = {
