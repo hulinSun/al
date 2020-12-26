@@ -30,7 +30,7 @@ class Lee1 {
                     // 这里是非法字符
                     return false
                 }
-//                print("栈取出来的\(top), 当前遍历的字符串\(cString)")
+                // print("栈取出来的\(top), 当前遍历的字符串\(cString)")
                 if resultLeft != top {
                     return false
                 }
