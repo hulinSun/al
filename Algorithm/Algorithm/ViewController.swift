@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        LinkedList<Int>.linkedListTes()
 //        DLinkedList<Int>.DLinkedListTest()
 //        CircleLinkedList<Int>.CircleLinkedListTest()
 //        CircleLinkedList<Int>.YuesesiProblemTest()
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
 //        DivideConquer.DivideConquerTest()
 //        DP.test()
 //        ArrayList.twoSum()
-        Lee1.test()
+//        Lee1.test()
     }
 
     

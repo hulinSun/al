@@ -285,6 +285,19 @@ class LinkedList<T: Comparable> {
         return -1
     }
     
+    public func getMiddleNode() -> Node? {
+        assert(first != nil, "List is empty")
+        
+        var slow = first
+        var fast = first
+        
+        while fast?.next != nil && fast?.next?.next != nil {
+            slow = slow?.next
+            fast = fast?.next?.next
+        }
+        return slow
+    }
+    
     private func getNode(index: Int) -> Node {
         assert(first != nil, "List is empty")
         assert(rangeCheck(index: index) , "outOfRange")
@@ -321,8 +334,12 @@ class LinkedList<T: Comparable> {
         link.add(element: 3)
         link.add(element: 4)
         link.add(element: 5)
-        link.add(index: 2, element: 99)
+        link.add(element: 6)
+        link.add(element: 7)
+//        link.add(element: 5)
         print(link)
+        print(link.getMiddleNode())
+        return;
         
         link.add(index: 2, element: 199)
         print(link)

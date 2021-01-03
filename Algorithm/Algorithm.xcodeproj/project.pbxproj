@@ -58,6 +58,8 @@
 		1A8E265D2552EA7B00D11FF0 /* StaQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8E265C2552EA7B00D11FF0 /* StaQueue.swift */; };
 		1A8E2662255304B500D11FF0 /* CircleQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8E2661255304B500D11FF0 /* CircleQueue.swift */; };
 		1A8E26692556E5C400D11FF0 /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8E26682556E5C400D11FF0 /* BinarySearchTree.swift */; };
+		1AA7854C25A0CE11004AFFD9 /* LeeLinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7854B25A0CE11004AFFD9 /* LeeLinkList.swift */; };
+		1AA7855125A21C67004AFFD9 /* LeeStack_Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7855025A21C67004AFFD9 /* LeeStack_Queue.swift */; };
 		1AE5D90F2545EDD20032404B /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE5D90E2545EDD20032404B /* LinkedList.swift */; };
 		1AF076FA25599700000D11E5 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF076F925599700000D11E5 /* BinaryTree.swift */; };
 		1AF076FF25599776000D11E5 /* BSTNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF076FE25599776000D11E5 /* BSTNode.swift */; };
@@ -143,6 +145,8 @@
 		1A8E265C2552EA7B00D11FF0 /* StaQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaQueue.swift; sourceTree = "<group>"; };
 		1A8E2661255304B500D11FF0 /* CircleQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleQueue.swift; sourceTree = "<group>"; };
 		1A8E26682556E5C400D11FF0 /* BinarySearchTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
+		1AA7854B25A0CE11004AFFD9 /* LeeLinkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeLinkList.swift; sourceTree = "<group>"; };
+		1AA7855025A21C67004AFFD9 /* LeeStack_Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeStack_Queue.swift; sourceTree = "<group>"; };
 		1AE5D90E2545EDD20032404B /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		1AF076F925599700000D11E5 /* BinaryTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		1AF076FE25599776000D11E5 /* BSTNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSTNode.swift; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				1A8150F725938E3B00FF6BFA /* Lee1.swift */,
+				1AA7854B25A0CE11004AFFD9 /* LeeLinkList.swift */,
+				1AA7855025A21C67004AFFD9 /* LeeStack_Queue.swift */,
 			);
 			path = lee;
 			sourceTree = "<group>";
@@ -546,6 +552,7 @@
 				1A4B40FC256FF53000334A38 /* KVNode.swift in Sources */,
 				1A8D29A4257BDA7800FDCD44 /* UnionFind_Size.swift in Sources */,
 				1A5DCE6625726FB700F30839 /* JavaHashMap.swift in Sources */,
+				1AA7855125A21C67004AFFD9 /* LeeStack_Queue.swift in Sources */,
 				1A7EBD9E257B5B5A002FF0B9 /* ShellSort.swift in Sources */,
 				1A8E26582552E8F300D11FF0 /* LDQueue.swift in Sources */,
 				1A8D29A9257BDE5B00FDCD44 /* UnionFind_Rank.swift in Sources */,
@@ -554,6 +561,7 @@
 				1A733C2425794F64001D6235 /* HeapSort.swift in Sources */,
 				1A733C1A25794528001D6235 /* BubbleSort.swift in Sources */,
 				1AF07721255C45B9000D11E5 /* LevelOrderPrinter.swift in Sources */,
+				1AA7854C25A0CE11004AFFD9 /* LeeLinkList.swift in Sources */,
 				1A7EBD8A257A2907002FF0B9 /* InsertSort.swift in Sources */,
 				1AF0770C255998BA000D11E5 /* BSTree.swift in Sources */,
 				1A77BA37254564CF00C8DE24 /* ArrayList.swift in Sources */,
