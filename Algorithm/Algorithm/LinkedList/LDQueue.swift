@@ -56,14 +56,12 @@ class LDQueue<T: Comparable> {
     
     public class func LDQueueTest() {
         let dequeue = LDQueue<Int>()
-        
         dequeue.enQueueRear(element: 10)
         dequeue.enQueueRear(element: 9)
         dequeue.enQueueRear(element: 8)
         dequeue.enQueueFront(element: 1)
         dequeue.enQueueFront(element: 2)
         dequeue.enQueueFront(element: 3)
-        
         dequeue.display()
         print(dequeue.deQueueRear())
         print(dequeue.deQueueRear())

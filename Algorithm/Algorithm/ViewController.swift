@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LinkedList<Int>.linkedListTes()
+//        LinkedList<Int>.linkedListTes()
 //        DLinkedList<Int>.DLinkedListTest()
 //        CircleLinkedList<Int>.CircleLinkedListTest()
 //        CircleLinkedList<Int>.YuesesiProblemTest()
@@ -41,6 +41,9 @@ class ViewController: UIViewController {
 //        DP.test()
 //        ArrayList.twoSum()
 //        Lee1.test()
+//        windowTest()
+//        parentsTest()
+        dailyTemperaturesTest()
     }
 
     
