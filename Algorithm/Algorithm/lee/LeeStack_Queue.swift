@@ -279,11 +279,37 @@ func dailyTemperatures(_ T: [Int]) -> [Int] {
             result[idx] = rights[idx] - idx
         }
     }
-    print(result)
+    return result
+}
+
+func dailyTemperatures2(_ T: [Int]) -> [Int] {
+    var result = Array<Int>(repeating: 0, count: T.count)
+    // 从后往前遍历，由后面的递推出前面的
+    for i in (0..<T.count-1).reversed() {
+        var j = i + 1
+        while true {
+            if T[j] > T[i] {
+                // j 就是第一个比他大的元素
+                result[i] = j - i
+                break
+            } else if (result[j] == 0) {
+                result[i] = 0
+                break
+            } else if (T[j] == T[i]) {
+                result[i] = result[j] + j - i
+                break
+            } else {
+                // 找j后面大的
+                j = result[j] + j
+            }
+        }
+    }
+    // 从后往前遍历
     return result
 }
 
 func dailyTemperaturesTest() {
     let nums =  [73, 74, 75, 71, 69, 72, 76, 73]
+    _ = dailyTemperatures2(nums)
     _ = dailyTemperatures(nums)
 }

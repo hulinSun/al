@@ -43,7 +43,14 @@ class ViewController: UIViewController {
 //        Lee1.test()
 //        windowTest()
 //        parentsTest()
-        dailyTemperaturesTest()
+//        dailyTemperaturesTest()
+//        isAnagramTest()
+//        reverseWordsTest()
+//        lengthOfLongestSubstringTest()
+//        maxValueTest()
+//        maxProfitTest()
+//        minDistanceTest()
+        longestPalindromeTest()
     }
 
     

@@ -45,6 +45,9 @@
 		1A7EBDA9257BB416002FF0B9 /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EBDA8257BB416002FF0B9 /* UnionFind.swift */; };
 		1A7EBDB1257BB4D7002FF0B9 /* UnionFind_QF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7EBDB0257BB4D7002FF0B9 /* UnionFind_QF.swift */; };
 		1A8150F825938E3B00FF6BFA /* Lee1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8150F725938E3B00FF6BFA /* Lee1.swift */; };
+		1A8337D725A44DDB00600EC4 /* LeeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337D625A44DDB00600EC4 /* LeeString.swift */; };
+		1A8337DC25A5908900600EC4 /* leeDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337DB25A5908900600EC4 /* leeDP.swift */; };
+		1A8337E125A8338E00600EC4 /* LeeTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337E025A8338E00600EC4 /* LeeTree.swift */; };
 		1A8D299F257BD4D900FDCD44 /* UnionFind_QU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D299E257BD4D900FDCD44 /* UnionFind_QU.swift */; };
 		1A8D29A4257BDA7800FDCD44 /* UnionFind_Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D29A3257BDA7800FDCD44 /* UnionFind_Size.swift */; };
 		1A8D29A9257BDE5B00FDCD44 /* UnionFind_Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D29A8257BDE5B00FDCD44 /* UnionFind_Rank.swift */; };
@@ -132,6 +135,9 @@
 		1A7EBDA8257BB416002FF0B9 /* UnionFind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 		1A7EBDB0257BB4D7002FF0B9 /* UnionFind_QF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_QF.swift; sourceTree = "<group>"; };
 		1A8150F725938E3B00FF6BFA /* Lee1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lee1.swift; sourceTree = "<group>"; };
+		1A8337D625A44DDB00600EC4 /* LeeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeString.swift; sourceTree = "<group>"; };
+		1A8337DB25A5908900600EC4 /* leeDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leeDP.swift; sourceTree = "<group>"; };
+		1A8337E025A8338E00600EC4 /* LeeTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeTree.swift; sourceTree = "<group>"; };
 		1A8D299E257BD4D900FDCD44 /* UnionFind_QU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_QU.swift; sourceTree = "<group>"; };
 		1A8D29A3257BDA7800FDCD44 /* UnionFind_Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_Size.swift; sourceTree = "<group>"; };
 		1A8D29A8257BDE5B00FDCD44 /* UnionFind_Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_Rank.swift; sourceTree = "<group>"; };
@@ -340,6 +346,9 @@
 				1A8150F725938E3B00FF6BFA /* Lee1.swift */,
 				1AA7854B25A0CE11004AFFD9 /* LeeLinkList.swift */,
 				1AA7855025A21C67004AFFD9 /* LeeStack_Queue.swift */,
+				1A8337D625A44DDB00600EC4 /* LeeString.swift */,
+				1A8337DB25A5908900600EC4 /* leeDP.swift */,
+				1A8337E025A8338E00600EC4 /* LeeTree.swift */,
 			);
 			path = lee;
 			sourceTree = "<group>";
@@ -551,11 +560,13 @@
 				1AE5D90F2545EDD20032404B /* LinkedList.swift in Sources */,
 				1A4B40FC256FF53000334A38 /* KVNode.swift in Sources */,
 				1A8D29A4257BDA7800FDCD44 /* UnionFind_Size.swift in Sources */,
+				1A8337DC25A5908900600EC4 /* leeDP.swift in Sources */,
 				1A5DCE6625726FB700F30839 /* JavaHashMap.swift in Sources */,
 				1AA7855125A21C67004AFFD9 /* LeeStack_Queue.swift in Sources */,
 				1A7EBD9E257B5B5A002FF0B9 /* ShellSort.swift in Sources */,
 				1A8E26582552E8F300D11FF0 /* LDQueue.swift in Sources */,
 				1A8D29A9257BDE5B00FDCD44 /* UnionFind_Rank.swift in Sources */,
+				1A8337E125A8338E00600EC4 /* LeeTree.swift in Sources */,
 				1A8D299F257BD4D900FDCD44 /* UnionFind_QU.swift in Sources */,
 				1A77B9FE25455E9D00C8DE24 /* ViewController.swift in Sources */,
 				1A733C2425794F64001D6235 /* HeapSort.swift in Sources */,
@@ -598,6 +609,7 @@
 				1A7EBD8F257A33A2002FF0B9 /* BinarySearch.swift in Sources */,
 				1A4B40F4256FF4BE00334A38 /* TreeMap.swift in Sources */,
 				1A733C122577F5A5001D6235 /* Sort.swift in Sources */,
+				1A8337D725A44DDB00600EC4 /* LeeString.swift in Sources */,
 				1A4B40EE256C099000334A38 /* TreeSet.swift in Sources */,
 				1A8E26692556E5C400D11FF0 /* BinarySearchTree.swift in Sources */,
 				1AF07714255AF6C8000D11E5 /* AVLTree.swift in Sources */,
