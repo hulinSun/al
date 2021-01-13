@@ -50,7 +50,10 @@ class ViewController: UIViewController {
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
-        longestPalindromeTest()
+//        longestPalindromeTest()
+//        NumberSolution.test()
+//        PermuteSoultion3.test()
+        ParenthesisSolution.ParenthesisSolutionTest()
     }
 
     

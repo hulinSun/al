@@ -48,6 +48,7 @@
 		1A8337D725A44DDB00600EC4 /* LeeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337D625A44DDB00600EC4 /* LeeString.swift */; };
 		1A8337DC25A5908900600EC4 /* leeDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337DB25A5908900600EC4 /* leeDP.swift */; };
 		1A8337E125A8338E00600EC4 /* LeeTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337E025A8338E00600EC4 /* LeeTree.swift */; };
+		1A8337E625ABF82100600EC4 /* LeeDFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8337E525ABF82100600EC4 /* LeeDFS.swift */; };
 		1A8D299F257BD4D900FDCD44 /* UnionFind_QU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D299E257BD4D900FDCD44 /* UnionFind_QU.swift */; };
 		1A8D29A4257BDA7800FDCD44 /* UnionFind_Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D29A3257BDA7800FDCD44 /* UnionFind_Size.swift */; };
 		1A8D29A9257BDE5B00FDCD44 /* UnionFind_Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8D29A8257BDE5B00FDCD44 /* UnionFind_Rank.swift */; };
@@ -138,6 +139,7 @@
 		1A8337D625A44DDB00600EC4 /* LeeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeString.swift; sourceTree = "<group>"; };
 		1A8337DB25A5908900600EC4 /* leeDP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leeDP.swift; sourceTree = "<group>"; };
 		1A8337E025A8338E00600EC4 /* LeeTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeTree.swift; sourceTree = "<group>"; };
+		1A8337E525ABF82100600EC4 /* LeeDFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeeDFS.swift; sourceTree = "<group>"; };
 		1A8D299E257BD4D900FDCD44 /* UnionFind_QU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_QU.swift; sourceTree = "<group>"; };
 		1A8D29A3257BDA7800FDCD44 /* UnionFind_Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_Size.swift; sourceTree = "<group>"; };
 		1A8D29A8257BDE5B00FDCD44 /* UnionFind_Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnionFind_Rank.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				1A8337D625A44DDB00600EC4 /* LeeString.swift */,
 				1A8337DB25A5908900600EC4 /* leeDP.swift */,
 				1A8337E025A8338E00600EC4 /* LeeTree.swift */,
+				1A8337E525ABF82100600EC4 /* LeeDFS.swift */,
 			);
 			path = lee;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				1A5DCE6625726FB700F30839 /* JavaHashMap.swift in Sources */,
 				1AA7855125A21C67004AFFD9 /* LeeStack_Queue.swift in Sources */,
 				1A7EBD9E257B5B5A002FF0B9 /* ShellSort.swift in Sources */,
+				1A8337E625ABF82100600EC4 /* LeeDFS.swift in Sources */,
 				1A8E26582552E8F300D11FF0 /* LDQueue.swift in Sources */,
 				1A8D29A9257BDE5B00FDCD44 /* UnionFind_Rank.swift in Sources */,
 				1A8337E125A8338E00600EC4 /* LeeTree.swift in Sources */,
