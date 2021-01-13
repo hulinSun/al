@@ -72,6 +72,7 @@
 		1AF0771F255C45B9000D11E5 /* BinaryTreeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF0771C255C45B9000D11E5 /* BinaryTreeInfo.swift */; };
 		1AF07720255C45B9000D11E5 /* TreePrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF0771D255C45B9000D11E5 /* TreePrinter.swift */; };
 		1AF07721255C45B9000D11E5 /* LevelOrderPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF0771E255C45B9000D11E5 /* LevelOrderPrinter.swift */; };
+		FE76ED0625ADA608004ED3AB /* QStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE76ED0525ADA608004ED3AB /* QStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		1AF0771C255C45B9000D11E5 /* BinaryTreeInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeInfo.swift; sourceTree = "<group>"; };
 		1AF0771D255C45B9000D11E5 /* TreePrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreePrinter.swift; sourceTree = "<group>"; };
 		1AF0771E255C45B9000D11E5 /* LevelOrderPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOrderPrinter.swift; sourceTree = "<group>"; };
+		FE76ED0525ADA608004ED3AB /* QStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,7 @@
 				1A8E26572552E8F300D11FF0 /* LDQueue.swift */,
 				1A8E265C2552EA7B00D11FF0 /* StaQueue.swift */,
 				1A8E2661255304B500D11FF0 /* CircleQueue.swift */,
+				FE76ED0525ADA608004ED3AB /* QStack.swift */,
 			);
 			path = LinkedList;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				1AF0771F255C45B9000D11E5 /* BinaryTreeInfo.swift in Sources */,
 				1A8D29AE257BE0F100FDCD44 /* UnionFind_Spliting.swift in Sources */,
 				1A73962C25505C2E00B4DAD3 /* AStack.swift in Sources */,
+				FE76ED0625ADA608004ED3AB /* QStack.swift in Sources */,
 				1A77BA2E25455EB300C8DE24 /* Fib.swift in Sources */,
 				1A7EBDA9257BB416002FF0B9 /* UnionFind.swift in Sources */,
 				1A77B9FA25455E9D00C8DE24 /* AppDelegate.swift in Sources */,

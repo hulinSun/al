@@ -35,6 +35,7 @@ class ArrayList {
         // 删除 从左往右遍历
         var i = index
         while i < size {
+            // 处理的是当前的这个，不会影响到下一趟的数据即可
             elements[i] = elements[i + 1] // i < i + 1 -> 箭头是< .那么向左移动 左边赋值永远是i
             i+=1
         }
@@ -232,7 +233,208 @@ class ArrayList {
         }
         print("结果 \(result)");
     }
+    
+    
+    /// 有序数组，删除重复元素，返回删除重复元素之后的长度
+    public class func removeDump(nums: inout [Int]) -> Int {
+        func getNotEqlIdx(nums: [Int], target: Int, from: Int) -> Int {
+            for idx in from..<nums.count {
+                if nums[idx] != target {
+                    return idx
+                }
+            }
+            return -1
+        }
+        
+        if nums.count == 0 {
+            return 0
+        }
+        var last = 1
+        var i = 1
+        while i < nums.count {
+            if nums[i - 1] == nums[i] {
+                // 相等. 找到右边第一个不相等的元素
+                let notEqlIdx = getNotEqlIdx(nums: nums, target: nums[i], from: i)
+                if notEqlIdx > 0 {
+                    let v = nums[notEqlIdx]
+                    nums[last] = v
+                    last += 1
+                    i = notEqlIdx + 1
+                } else {
+                    // 错误情况
+                    print("错误情况 \(i)")
+                }
+            } else {
+                nums[last] = nums[i]
+                last += 1
+                i += 1
+            }
+        }
+        return last
+    }
+    public class func removeDumpTest() {
+        var nums = [1,4,4,4,5,6,6,6,7,8]
+        print(nums)
+        let c = ArrayList.removeDump(nums: &nums)
+        for idx in 0..<c {
+            print(nums[idx])
+        }
+    }
+    
+    /// 删除数组中的元素，返回删除后的长度
+    public class func removeEle(nums: inout [Int],target: Int) -> Int {
+        if nums.count == 0 {
+            return 0
+        }
+        var last = 0
+        var i = 0
+        while i < nums.count {
+            if nums[i] != target {
+                nums[last] = nums[i]
+                last += 1
+            }
+            i += 1
+        }
+        return last
+    }
+    
+    public class func removeEleTest() {
+        var nums = [1,4,4,4,5,6,6,6,7,8]
+        print(nums)
+        let c = ArrayList.removeEle(nums: &nums, target: 4)
+        for idx in 0..<c {
+            print(nums[idx])
+        }
+    }
+    
+    /// 接雨水
+    public class func mostWater(nums: [Int]) -> Int {
+        if nums.count == 0 {
+            return 0
+        }
+        var start = 0
+        var end = nums.count - 1
+        var maxWater = 0
+        /// 对撞指针
+        while start < end {
+            let width = end - start
+            var high = 0
+            if nums[start] < nums[end] {
+                high = nums[start]
+                start += 1
+            } else {
+                high = nums[end]
+                end -= 1
+            }
+            maxWater = max(width * high, maxWater)
+        }
+        
+        /// 暴力解决法： 两层遍历
+//        for start in 0..<nums.count {
+//            for end in start + 1 ..< nums.count {
+//                let width = end - start
+//                var high = 0
+//                if nums[start] < nums[end] {
+//                    high = nums[start]
+//                } else {
+//                    high = nums[end]
+//                }
+//                maxWater = max(maxWater, width * high)
+//            }
+//        }
+        return maxWater
+    }
+    
+    public class func mostWaterTest() {
+        print(mostWater(nums: [1,8,6,2,5,4,8,3,7]))
+    }
+    
+    /// 找缺失的最小正数
+    public class func firstMissingPositive(_ nums: [Int]) -> Int {
+        func swap(arr: inout [Int], i: Int, j: Int) {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        var arr = nums
+        for i in 0..<arr.count {
+            // arr[i] -> 值3 应该放在 arr[2]的位置
+            while arr[i] > 0 && arr[i] <= nums.count && arr[arr[i] - 1] != arr[i] {
+                swap(arr: &arr, i: arr[i] - 1, j: i)
+            }
+        }
+        print(arr)
+        for (i, item) in arr.enumerated() {
+            if item != i + 1 {
+                return i + 1
+            }
+        }
+        return  nums.count + 1
+    }
+    
+    public class func findDuplicates(_ nums: inout [Int]) -> [Int] {
+        func swap(arr: inout [Int], i: Int, j: Int) {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        
+        var res = [Int]()
+        if nums.count == 0 {
+            return res
+        }
+        for i in 0..<nums.count {
+            // nums[i] - 1 == i
+            while nums[i] <= nums.count && nums[nums[i] - 1] != nums[i] {
+                swap(arr: &nums, i: nums[i] - 1, j: i)
+            }
+        }
+        print(nums)
+        for (idx, item) in nums.enumerated() {
+            print("idx = \(idx), item = \(item)")
+            if idx + 1 != item {
+                res.append(item)
+            }
+        }
+        return res
+    }
 }
+
+
+class combinationSumSolution {
+    
+    /// 给一个数组，和 目标值，算出所有和为target的组合
+    public func combinationSums(nums: [Int], target: Int) -> [[Int]] {
+        if nums.count == 0 {
+            return [[Int]()]
+        }
+        
+        var sel = Array<Int>()
+        var result = [[Int]]()
+        /// 排序减少回溯次数
+        dfs(sel: &sel, target: target, result: &result, nums: nums.sorted(), idx: 0)
+        return result
+    }
+    
+    public func dfs(sel: inout [Int], target: Int, result: inout [[Int]], nums: [Int], idx: Int) {
+        if target == 0 {
+            result.append(sel)
+            return
+        }
+        for i in idx..<nums.count{
+            if target >= nums[i] {
+                sel.append(nums[i])
+                dfs(sel: &sel, target: target - nums[i], result: &result, nums: nums, idx: i)
+                // 归位. 状态重置
+                sel.removeLast()
+            } else {
+                break
+            }
+        }
+    }
+}
+
+
 
 /**
 public class ArrayList<E> {
