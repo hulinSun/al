@@ -350,6 +350,42 @@ class ArrayList {
     }
 }
 
+
+class combinationSumSolution {
+    
+    /// 给一个数组，和 目标值，算出所有和为target的组合
+    public func combinationSums(nums: [Int], target: Int) -> [[Int]] {
+        if nums.count == 0 {
+            return [[Int]()]
+        }
+        
+        var sel = Array<Int>()
+        var result = [[Int]]()
+        /// 排序减少回溯次数
+        dfs(sel: &sel, target: target, result: &result, nums: nums.sorted(), idx: 0)
+        return result
+    }
+    
+    public func dfs(sel: inout [Int], target: Int, result: inout [[Int]], nums: [Int], idx: Int) {
+        if target == 0 {
+            result.append(sel)
+            return
+        }
+        for i in idx..<nums.count{
+            if target >= nums[i] {
+                sel.append(nums[i])
+                dfs(sel: &sel, target: target - nums[i], result: &result, nums: nums, idx: i)
+                // 归位. 状态重置
+                sel.removeLast()
+            } else {
+                break
+            }
+        }
+    }
+}
+
+
+
 /**
 public class ArrayList<E> {
     /**

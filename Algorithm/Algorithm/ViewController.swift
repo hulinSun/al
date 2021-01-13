@@ -52,6 +52,7 @@ class ViewController: UIViewController {
 //        minDistanceTest()
 //        longestPalindromeTest()
 //        QStack2.QStackTest()
-        ArrayList.mostWaterTest()
+//        ArrayList.mostWaterTest()
+        print(combinationSumSolution().combinationSums(nums: [2,3,6,7], target: 7))
     }
 }
