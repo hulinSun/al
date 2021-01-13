@@ -52,6 +52,6 @@ class ViewController: UIViewController {
 //        minDistanceTest()
 //        longestPalindromeTest()
 //        QStack2.QStackTest()
-        ArrayList.removeDumpTest()
+        ArrayList.removeEleTest()
     }
 }

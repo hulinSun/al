@@ -280,6 +280,32 @@ class ArrayList {
             print(nums[idx])
         }
     }
+    
+    /// 删除数组中的元素，返回删除后的长度
+    public class func removeEle(nums: inout [Int],target: Int) -> Int {
+        if nums.count == 0 {
+            return 0
+        }
+        var last = 0
+        var i = 0
+        while i < nums.count {
+            if nums[i] != target {
+                nums[last] = nums[i]
+                last += 1
+            }
+            i += 1
+        }
+        return last
+    }
+    
+    public class func removeEleTest() {
+        var nums = [1,4,4,4,5,6,6,6,7,8]
+        print(nums)
+        let c = ArrayList.removeEle(nums: &nums, target: 4)
+        for idx in 0..<c {
+            print(nums[idx])
+        }
+    }
 }
 
 /**
