@@ -306,6 +306,48 @@ class ArrayList {
             print(nums[idx])
         }
     }
+    
+    /// 接雨水
+    public class func mostWater(nums: [Int]) -> Int {
+        if nums.count == 0 {
+            return 0
+        }
+        var start = 0
+        var end = nums.count - 1
+        var maxWater = 0
+        /// 对撞指针
+        while start < end {
+            let width = end - start
+            var high = 0
+            if nums[start] < nums[end] {
+                high = nums[start]
+                start += 1
+            } else {
+                high = nums[end]
+                end -= 1
+            }
+            maxWater = max(width * high, maxWater)
+        }
+        
+        /// 暴力解决法： 两层遍历
+//        for start in 0..<nums.count {
+//            for end in start + 1 ..< nums.count {
+//                let width = end - start
+//                var high = 0
+//                if nums[start] < nums[end] {
+//                    high = nums[start]
+//                } else {
+//                    high = nums[end]
+//                }
+//                maxWater = max(maxWater, width * high)
+//            }
+//        }
+        return maxWater
+    }
+    
+    public class func mostWaterTest() {
+        print(mostWater(nums: [1,8,6,2,5,4,8,3,7]))
+    }
 }
 
 /**
