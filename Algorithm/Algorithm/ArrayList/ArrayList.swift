@@ -35,6 +35,7 @@ class ArrayList {
         // 删除 从左往右遍历
         var i = index
         while i < size {
+            // 处理的是当前的这个，不会影响到下一趟的数据即可
             elements[i] = elements[i + 1] // i < i + 1 -> 箭头是< .那么向左移动 左边赋值永远是i
             i+=1
         }
