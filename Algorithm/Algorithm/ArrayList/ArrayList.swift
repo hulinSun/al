@@ -348,6 +348,56 @@ class ArrayList {
     public class func mostWaterTest() {
         print(mostWater(nums: [1,8,6,2,5,4,8,3,7]))
     }
+    
+    /// 找缺失的最小正数
+    public class func firstMissingPositive(_ nums: [Int]) -> Int {
+        func swap(arr: inout [Int], i: Int, j: Int) {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        var arr = nums
+        for i in 0..<arr.count {
+            // arr[i] -> 值3 应该放在 arr[2]的位置
+            while arr[i] > 0 && arr[i] <= nums.count && arr[arr[i] - 1] != arr[i] {
+                swap(arr: &arr, i: arr[i] - 1, j: i)
+            }
+        }
+        print(arr)
+        for (i, item) in arr.enumerated() {
+            if item != i + 1 {
+                return i + 1
+            }
+        }
+        return  nums.count + 1
+    }
+    
+    public class func findDuplicates(_ nums: inout [Int]) -> [Int] {
+        func swap(arr: inout [Int], i: Int, j: Int) {
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
+        }
+        
+        var res = [Int]()
+        if nums.count == 0 {
+            return res
+        }
+        for i in 0..<nums.count {
+            // nums[i] - 1 == i
+            while nums[i] <= nums.count && nums[nums[i] - 1] != nums[i] {
+                swap(arr: &nums, i: nums[i] - 1, j: i)
+            }
+        }
+        print(nums)
+        for (idx, item) in nums.enumerated() {
+            print("idx = \(idx), item = \(item)")
+            if idx + 1 != item {
+                res.append(item)
+            }
+        }
+        return res
+    }
 }
 
 

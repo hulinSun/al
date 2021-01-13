@@ -53,6 +53,11 @@ class ViewController: UIViewController {
 //        longestPalindromeTest()
 //        QStack2.QStackTest()
 //        ArrayList.mostWaterTest()
-        print(combinationSumSolution().combinationSums(nums: [2,3,6,7], target: 7))
+//        print(combinationSumSolution().combinationSums(nums: [2,3,6,7], target: 7))
+//        ArrayList.firstMissingPositive([3,4,-1,1,9])
+        
+//        var a = [4,3,2,7,8,2,3,1]
+//        print(ArrayList.findDuplicates(&a))
+        
     }
 }
