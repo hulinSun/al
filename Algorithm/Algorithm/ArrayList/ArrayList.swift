@@ -233,6 +233,53 @@ class ArrayList {
         }
         print("结果 \(result)");
     }
+    
+    
+    /// 有序数组，删除重复元素，返回删除重复元素之后的长度
+    public class func removeDump(nums: inout [Int]) -> Int {
+        func getNotEqlIdx(nums: [Int], target: Int, from: Int) -> Int {
+            for idx in from..<nums.count {
+                if nums[idx] != target {
+                    return idx
+                }
+            }
+            return -1
+        }
+        
+        if nums.count == 0 {
+            return 0
+        }
+        var last = 1
+        var i = 1
+        while i < nums.count {
+            if nums[i - 1] == nums[i] {
+                // 相等. 找到右边第一个不相等的元素
+                let notEqlIdx = getNotEqlIdx(nums: nums, target: nums[i], from: i)
+                if notEqlIdx > 0 {
+                    let v = nums[notEqlIdx]
+                    nums[last] = v
+                    last += 1
+                    i = notEqlIdx + 1
+                } else {
+                    // 错误情况
+                    print("错误情况 \(i)")
+                }
+            } else {
+                nums[last] = nums[i]
+                last += 1
+                i += 1
+            }
+        }
+        return last
+    }
+    public class func removeDumpTest() {
+        var nums = [1,4,4,4,5,6,6,6,7,8]
+        print(nums)
+        let c = ArrayList.removeDump(nums: &nums)
+        for idx in 0..<c {
+            print(nums[idx])
+        }
+    }
 }
 
 /**
