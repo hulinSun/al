@@ -273,3 +273,23 @@ func palindromeLength(cs: [Character],  l: Int,  r: Int) -> Int {
 func longestPalindromeTest() {
     _ = longestPalindrome2("dadbaabfds")
 }
+
+/// 最大连续子数组的和
+func maxSubArray(_ nums: [Int]) -> Int {
+    if nums.count == 0 {
+        return 0
+    }
+    // dp[i] 以 i为结尾的连续子数组的和
+    var dp = Array<Int>(repeating: 0, count: nums.count)
+    dp[0] = nums.first!
+    var maxDp = dp[0]
+    for i in 1..<nums.count {
+        if dp[i - 1] > 0 {
+            dp[i] = dp[i - 1] + nums[i]
+        } else {
+            dp[i] = nums[i]
+        }
+        maxDp = max(maxDp, dp[i])
+    }
+    return maxDp
+}

@@ -69,5 +69,7 @@ class ViewController: UIViewController {
             [7,8,9],
         ]
         ArrayList.rotate(&a)
+        
+        print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
     }
 }

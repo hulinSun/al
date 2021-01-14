@@ -291,3 +291,29 @@ func reverse(_ head: LeeListNode?) -> LeeListNode? {
     head?.next = nil
     return rh
 }
+
+
+/// 删除倒数第N个节点
+func removeNthFromEnd(_ head: LeeListNode?, _ n: Int) -> LeeListNode? {
+    if head == nil || n <= 0{
+        return nil
+    }
+    let dummpy: LeeListNode! = LeeListNode(-1)
+    dummpy.next = head
+    
+    // 两个指针，快指针先走N步， 然后快慢一起走，走到头了。慢指针就是倒数第N个节点
+    // 虚拟头结点 。找到前一个节点。。他妈的。贼重要
+    var slow = dummpy
+    var fast = head
+    
+    for _ in 0..<n {
+        fast = fast?.next
+    }
+    while fast != nil {
+        fast = fast?.next
+        slow = slow?.next
+    }
+    slow?.next = slow?.next?.next
+    return dummpy.next
+}
+
