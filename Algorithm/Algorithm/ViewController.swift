@@ -59,5 +59,11 @@ class ViewController: UIViewController {
 //        var a = [4,3,2,7,8,2,3,1]
 //        print(ArrayList.findDuplicates(&a))
         
+        var a = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+        ]
+        ArrayList.rotate(&a)
     }
 }
