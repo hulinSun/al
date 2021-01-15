@@ -293,3 +293,87 @@ func maxSubArray(_ nums: [Int]) -> Int {
     }
     return maxDp
 }
+
+/// 不同路径
+/// 机器人只能向右 向下走 m * n
+/// 机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
+/// 问总共有多少条不同的路径？
+func uniquePaths(_ m: Int, _ n: Int) -> Int {
+    // 3 * 2
+    var dp = Array2D(columns: m, rows: n, initialValue: 0)
+    for idx in 0..<m {
+        dp[0,idx] = 1
+    }
+    for idx in 0..<n {
+        dp[idx,0] = 1
+    }
+    for col in 1..<m {
+        for row in 1..<n {
+            dp[row,col] = dp[row - 1, col] + dp[row, col - 1]
+        }
+    }
+    
+    return dp[n - 1 , m - 1]
+}
+
+//https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
+/// 搜索旋转数组
+func search(_ nums: [Int], _ target: Int) -> Int {
+    if nums.count == 0 {
+        return -1
+    }
+    if nums.count == 1 {
+        return nums[0] == target ? 0 : -1
+    }
+    // 大于两个
+    var left = 0
+    var right = nums.count - 1
+    while left <= right {
+        let mid = (left + right) / 2
+        if target == nums[mid] {
+            return mid
+        }
+        // 先判断那边是有序的
+        // 左边是有序的。在左边找
+        if nums[0] <= nums[mid]{
+            if nums[0] <= target && target < nums[mid] {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            // 右边是有序的
+            if target > nums[mid] && target <= nums[nums.count - 1] {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+    return -1
+}
+
+/// https://leetcode-cn.com/problems/minimum-path-sum/
+/// 最小路径和
+func minPathSum(_ grid: [[Int]]) -> Int {
+    if grid.count == 0 {
+        return 0
+    }
+    let row = grid.count
+    let col = grid.first!.count
+    var dp = Array2D(columns: col, rows: row, initialValue: 0)
+    dp[0,0] = grid[0][0]
+    // dp[i,0]  dp[0,i]
+    for idx in 1..<row {
+        dp[idx,0] = dp[idx - 1, 0] + grid[idx][0]
+    }
+    for idx in 1..<col {
+        dp[0,idx] = dp[0, idx - 1] + grid[0][idx]
+    }
+    for r in 1..<row {
+        for c in 1..<col {
+            dp[r,c] = min(dp[r, c - 1], dp[r - 1,c]) + grid[r][c]
+        }
+    }
+    return dp[row - 1, col - 1]
+}

@@ -72,7 +72,16 @@ class ViewController: UIViewController {
         
 //        print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 
-        var a = [2,0,2,1,1,0]
-        sortColors2(&a)
+//        var a = [2,0,2,1,1,0]
+//        sortColors2(&a)
+        
+//        print(uniquePaths(3,2))
+        
+        var a = [
+              [1,2,3],
+              [4,1,6],
+              [7,4,9],
+          ]
+        minPathSum(a)
     }
 }
