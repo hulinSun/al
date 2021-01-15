@@ -63,13 +63,16 @@ class ViewController: UIViewController {
 //        var a = [4,3,2,7,8,2,3,1]
 //        print(ArrayList.findDuplicates(&a))
         
-        var a = [
-            [1,2,3],
-            [4,5,6],
-            [7,8,9],
-        ]
-        ArrayList.rotate(&a)
+//        var a = [
+//            [1,2,3],
+//            [4,5,6],
+//            [7,8,9],
+//        ]
+//        ArrayList.rotate(&a)
         
-        print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+//        print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+
+        var a = [2,0,2,1,1,0]
+        sortColors2(&a)
     }
 }
