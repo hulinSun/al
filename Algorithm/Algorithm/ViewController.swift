@@ -77,11 +77,13 @@ class ViewController: UIViewController {
         
 //        print(uniquePaths(3,2))
         
-        var a = [
-              [1,2,3],
-              [4,1,6],
-              [7,4,9],
-          ]
-        minPathSum(a)
+//        var a = [
+//              [1,2,3],
+//              [4,1,6],
+//              [7,4,9],
+//          ]
+//        minPathSum(a)
+        
+        printLinxin(n: 5)
     }
 }

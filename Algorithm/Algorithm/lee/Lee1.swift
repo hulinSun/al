@@ -256,3 +256,22 @@ extension Lee1 {
         mergeTwoArray(array1: &array1, validCount: 5, array2: array2)
     }
 }
+
+/// 打印菱形
+func printLinxin(n: Int) {
+    let a = (n + 1) / 2
+    var s = ""
+    for row in 0...n {
+        for col in 0...n {
+            let x = abs(col - a)
+            let y = abs(row - a)
+            if abs(x + y) < a {
+                s += "*"
+            } else {
+                s += " "
+            }
+        }
+        s += "\n"
+    }
+    print(s)
+}
