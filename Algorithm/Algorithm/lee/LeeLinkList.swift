@@ -317,3 +317,65 @@ func removeNthFromEnd(_ head: LeeListNode?, _ n: Int) -> LeeListNode? {
     return dummpy.next
 }
 
+/// 合并两个有序链表
+func mergeTwoLists(_ l1: LeeListNode?, _ l2: LeeListNode?) -> LeeListNode? {
+    if l1 == nil {
+        return l2
+    }
+    if l2 == nil {
+        return l1
+    }
+    
+    // 两个都不为空
+    let dumpy = LeeListNode(-1)
+    var last:LeeListNode? = dumpy
+    dumpy.next = last
+    
+    var a = l1
+    var b = l2
+    // 两个链表都有值
+    while a != nil && b != nil {
+        if a!.val < b!.val {
+            last?.next = a
+            a = a?.next
+        } else {
+            last?.next = b
+            b = b?.next
+        }
+        last = last?.next
+    }
+    
+    // 判断有剩余
+    while a != nil {
+        last?.next = a
+        last = last?.next
+        a = a?.next
+    }
+    
+    while b != nil {
+        last?.next = b
+        last = last?.next
+        b = b?.next
+    }
+    return dumpy.next
+}
+
+
+/// 合并两个有序链表
+/// 递归解法
+func mergeTwoLists2(_ l1: LeeListNode?, _ l2: LeeListNode?) -> LeeListNode? {
+    if l1 == nil {
+        return l2
+    }
+    if l2 == nil {
+        return l1
+    }
+    if l1!.val < l2!.val {
+        l1?.next = mergeTwoLists2(l1?.next, l2)
+        return l1
+    } else {
+        l2?.next = mergeTwoLists2(l1, l2?.next)
+        return l2
+    }
+    return nil
+}
