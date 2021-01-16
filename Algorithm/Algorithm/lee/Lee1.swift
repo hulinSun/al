@@ -275,3 +275,34 @@ func printLinxin(n: Int) {
     }
     print(s)
 }
+
+
+/// 1.遍历矩阵matrix，将值为0的元素的行的值和列的值分别存放在两个数组row 和 col中（定位）；
+/// 2.再次分别遍历 row 和 col，修改matrix的元素为0
+func setZeroes(_ matrix: inout [[Int]]) {
+    if matrix.count == 0 {
+        return
+    }
+    print(matrix)
+    let col = matrix.first!.count
+    let row = matrix.count
+    var rows = [Int]()
+    var cols = [Int]()
+    
+    for r in 0..<row {
+        for c in 0..<col {
+            if matrix[r][c] == 0 {
+                rows.append(r)
+                cols.append(c)
+            }
+        }
+    }
+    for r in 0..<row {
+        for c in 0..<col {
+            if rows.contains(r) || cols.contains(c) {
+                matrix[r][c] = 0
+            }
+        }
+    }
+    print(matrix)
+}
