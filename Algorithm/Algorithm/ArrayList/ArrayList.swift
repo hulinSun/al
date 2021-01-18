@@ -398,6 +398,33 @@ class ArrayList {
         }
         return res
     }
+    
+    // N * N
+    public class func rotate(_ matrix: inout [[Int]]) {
+        if matrix.count == 0 {
+            return
+        }
+        
+        let n = matrix.count
+        // 水平翻转, col 相等
+        for row in 0..<n/2{
+            for col in 0..<n {
+                let temp = matrix[row][col]
+                matrix[row][col] = matrix[n - row - 1][col]
+                matrix[n - row - 1][col] = temp
+            }
+        }
+        
+        // 对角线翻转
+        for row in 0..<n {
+            for col in 0..<row {
+                let temp = matrix[row][col]
+                matrix[row][col] = matrix[col][row]
+                matrix[col][row] = temp
+            }
+        }
+        print(matrix)
+    }
 }
 
 

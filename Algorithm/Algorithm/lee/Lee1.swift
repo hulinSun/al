@@ -152,6 +152,72 @@ class Lee1 {
     }
 }
 
+/// 荷兰国旗问题 .排颜色
+/// 计数排序法 . 两趟
+func sortColors(_ nums: inout [Int]) {
+    if nums.count == 0 {
+        return
+    }
+    // 分别对应 0 1 2 出现次数
+    var counts = [0,0,0]
+    for item in nums {
+        if item == 0 {
+            counts[0] += 1
+        }
+        if item == 1 {
+            counts[1] += 1
+        }
+        if item == 2 {
+            counts[2] += 1
+        }
+    }
+    // 计数排序
+    var last = 0
+    for (idx, item) in counts.enumerated() {
+        var c = item
+        while c != 0 {
+            // idx 代表值
+            nums[last] = idx
+            last += 1
+            c -= 1
+        }
+    }
+}
+
+/// 指针一趟搞定
+func sortColors2(_ nums: inout [Int]) {
+    func swap(nums: inout [Int], i: Int, j: Int) {
+        let temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+    }
+    
+    if nums.count == 0 {
+        return
+    }
+    // p0 用来换0
+    // p1 用来换1
+    // p0 < p1
+    var p0 = 0
+    var p1 = 0
+    for i in 0..<nums.count {
+        let n = nums[i]
+        if n == 0 {
+            swap(nums: &nums, i: i, j: p0)
+            // p0 移动完之后，p1再与i换一下
+            if p0 < p1 {
+                swap(nums: &nums, i: i, j: p1)
+            }
+            p0 += 1
+            p1 += 1
+        }
+        if n == 1 {
+            swap(nums: &nums, i: i, j: p1)
+            p1 += 1
+        }
+    }
+    print(nums)
+}
 
 
 extension Lee1 {
@@ -189,4 +255,54 @@ extension Lee1 {
         let array2 = [2,4,6,7,10,11]
         mergeTwoArray(array1: &array1, validCount: 5, array2: array2)
     }
+}
+
+/// 打印菱形
+func printLinxin(n: Int) {
+    let a = (n + 1) / 2
+    var s = ""
+    for row in 0...n {
+        for col in 0...n {
+            let x = abs(col - a)
+            let y = abs(row - a)
+            if abs(x + y) < a {
+                s += "*"
+            } else {
+                s += " "
+            }
+        }
+        s += "\n"
+    }
+    print(s)
+}
+
+
+/// 1.遍历矩阵matrix，将值为0的元素的行的值和列的值分别存放在两个数组row 和 col中（定位）；
+/// 2.再次分别遍历 row 和 col，修改matrix的元素为0
+func setZeroes(_ matrix: inout [[Int]]) {
+    if matrix.count == 0 {
+        return
+    }
+    print(matrix)
+    let col = matrix.first!.count
+    let row = matrix.count
+    var rows = [Int]()
+    var cols = [Int]()
+    
+    for r in 0..<row {
+        for c in 0..<col {
+            if matrix[r][c] == 0 {
+                rows.append(r)
+                cols.append(c)
+            }
+        }
+    }
+    for r in 0..<row {
+        for c in 0..<col {
+            if rows.contains(r) || cols.contains(c) {
+                matrix[r][c] = 0
+            }
+        }
+    }
+    print(matrix)
 }
