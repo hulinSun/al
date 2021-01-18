@@ -192,6 +192,59 @@ func lengthOfLongestSubstring(_ s: String) -> Int {
     return long
 }
 
+/// start不动，end向后移动
+/// 当end遇到重复字符，start应该放在上一个重复字符的位置的后一位，同时记录最长的长度
+/// 怎样判断是否遇到重复字符，且怎么知道上一个重复字符的位置？--用哈希字典的key来判断是否重复，用value来记录该字符的下一个不重复的位置。
+func lengthOfLongestSubstring2(_ s: String) -> Int {
+    if s.count == 0 {
+        return 0
+    }
+    var cs = Array<Character>(repeating: " ", count: s.count)
+    for (idx,c) in s.enumerated() {
+        cs[idx] = c
+    }
+    // 第一个先放里面
+    var pres = Dictionary<Character,Int>()
+    var left = 0
+    var long = 0
+    for idx in 0..<cs.count {
+        let c = cs[idx]
+        // 如果之前存在过
+        if pres.keys.contains(c) {
+            left = max(left, pres[c]! + 1)
+        }
+        pres[c] = idx
+        long = max(long, idx - left + 1)
+    }
+    return long
+}
+
+
 func lengthOfLongestSubstringTest() {
-    print(lengthOfLongestSubstring("abcabcbb"))
+//    print(lengthOfLongestSubstring("abcabcbb"))
+    print(lengthOfLongestSubstring2("abcabcbb"))
+}
+
+/// 最大水
+func maxArea(_ height: [Int]) -> Int {
+    if height.count == 0 {
+        return 0
+    }
+    var left = 0
+    var right = height.count - 1
+    var maxH = 0
+    while left < height.count && right > 0 {
+        let w = right - left
+        var h = 0
+        if height[left] < height[right] {
+            h = height[left]
+            left += 1
+        } else {
+            h = height[right]
+            right -= 1
+        }
+        maxH = max(maxH, w * h)
+    }
+    return maxH
+    
 }
