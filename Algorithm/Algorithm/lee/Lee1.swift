@@ -306,3 +306,27 @@ func setZeroes(_ matrix: inout [[Int]]) {
     }
     print(matrix)
 }
+
+
+// 移动0
+/// https://leetcode-cn.com/problems/move-zeroes/
+func moveZeroes(_ nums: inout [Int]) {
+    if nums.count == 0 {
+        return
+    }
+    var current = 0
+    var zeroCount = 0
+    for item in nums {
+        if item != 0 {
+            nums[current] = item
+            current += 1
+        } else {
+            zeroCount += 1
+        }
+    }
+    var i = 0
+    while i < zeroCount {
+        nums[nums.count - 1 - i] = 0
+        i += 1
+    }
+}
