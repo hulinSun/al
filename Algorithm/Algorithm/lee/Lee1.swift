@@ -335,7 +335,7 @@ func moveZeroes(_ nums: inout [Int]) {
 /// https://leetcode-cn.com/problems/3sum/
 func threeSum(_ nums: [Int]) -> [[Int]] {
     var result = [[Int]]()
-    if nums.count == 0 {
+    if nums.count <= 2 {
         return result
     }
     // 先排序
@@ -346,14 +346,23 @@ func threeSum(_ nums: [Int]) -> [[Int]] {
     // i 做第一个
     // l r 作为另外两个
     for i in 0..<count - 2 {
+        if i > 0 && a[i] == a[i - 1] {
+            continue
+        }
         var l = i + 1
         var r = count - 1
         let remain = 0 - a[i]
-        let twoSum = a[l] + a[r]
-        while l < r {
+        while l < r && l <= count - 2 && r > 0 {
+            let twoSum = a[l] + a[r]
             if twoSum == remain {
                 // 找到了
                 result.append([a[i],a[l],a[r]])
+                while l < r && a[l] == a[l + 1] {
+                    l += 1
+                }
+                while l < r && a[r] == a[r - 1] {
+                    r -= 1
+                }
                 r -= 1
                 l += 1
             } else if twoSum > remain {
