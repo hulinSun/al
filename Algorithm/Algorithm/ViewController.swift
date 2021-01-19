@@ -86,13 +86,15 @@ class ViewController: UIViewController {
         
 //        printLinxin(n: 5)
 
-        var a = [[1,2,3,4],[5,0,7,8],[0,10,11,12],[13,14,15,0]]
+//        var a = [[1,2,3,4],[5,0,7,8],[0,10,11,12],[13,14,15,0]]
 
 //        var a = [
 //              [0,1,2,0],
 //              [3,4,5,2],
 //              [1,4,9,5],
 //          ]
-        setZeroes(&a)
+//        setZeroes(&a)
+        
+        print(threeSum([-1,0,1,2,-1,-4]))
     }
 }
