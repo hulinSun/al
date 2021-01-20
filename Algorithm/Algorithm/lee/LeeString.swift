@@ -304,3 +304,32 @@ func longNumber(str: String) -> Int {
     print(dp)
     return long
 }
+
+/// 左旋转k 字符串
+/// 如把字符串 ab cdef 左旋转2 位得到字符串 cdef ab。请实现字符串左旋转的函数。
+func rotatekString(str: String) -> String {
+    /// 给一个字符数组， 从l 到 r 翻转
+    func reverse(cs: inout [Character],l: Int, r: Int) {
+        var left = l
+        var right = r
+        while left < right {
+            let temp = cs[left]
+            cs[left] = cs[right]
+            cs[right] = temp
+            left += 1
+            right -= 1
+        }
+    }
+    var cs = Array<Character>(repeating: " ", count: str.count)
+    for (i,c) in str.enumerated() {
+        cs[i] = c
+    }
+    // fedcba
+    // cdefab
+    // 旋转字符串。 两次旋转
+    reverse(cs: &cs, l: 0, r: cs.count - 1)
+    reverse(cs: &cs, l: 0, r: cs.count - 1 - 2)
+    reverse(cs: &cs, l: cs.count - 2, r: cs.count - 1)
+    
+    return String(cs)
+}

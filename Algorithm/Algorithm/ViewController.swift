@@ -101,7 +101,8 @@ class ViewController: UIViewController {
 //        print(threeSum([1,-1,-1,0]))
 //        _ = firstExsitChar(str: "abaccdeff")
         
-        print(longNumber(str: "abcd12345ed125ss123456789"))
+//        print(longNumber(str: "abcd12345ed125ss123456789"))
+        print(rotatekString(str: "abcdefg"))
     }
 }
 
