@@ -234,3 +234,35 @@ func inorderTraversal(_ root: TreeNode?) -> [Int] {
     pinorderTraversal(node: root, res: &res)
     return res
 }
+
+func isPostOrderArray(root: TreeNode?, array: [Int]) -> Bool {
+    // 后续遍历
+    func isPostOrderNum(node: TreeNode?, idx: inout Int, array: [Int]) -> Bool {
+        if node == nil {
+            // 最后一个了
+            if idx == array.count - 1 {
+                return true
+            } else {
+                return false
+            }
+        }
+        if node?.left != nil {
+            _ = isPostOrderNum(node: node?.left, idx: &idx, array: array)
+        }
+        if node?.right != nil {
+            _ = isPostOrderNum(node: node?.right, idx: &idx, array: array)
+        }
+        // current
+        if idx >= array.count || node?.val != array[idx]  {
+            return false
+        }
+        idx += 1
+        return true
+    }
+    
+    if root == nil {
+        return false
+    }
+    var idx = 0
+    return isPostOrderNum(node: root, idx: &idx, array: array)
+}

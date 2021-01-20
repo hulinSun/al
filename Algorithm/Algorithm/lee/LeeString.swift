@@ -246,5 +246,31 @@ func maxArea(_ height: [Int]) -> Int {
         maxH = max(maxH, w * h)
     }
     return maxH
+}
+
+/// 在一个字符串中找到第一个只出现一次的字符。如输入 abaccdeff，则输出 b。
+func firstExsitChar(str: String) -> Character? {
+    /// 26个字母
+    var cs = Array<Int>(repeating: -1, count: 26)
+    for (i,c) in str.enumerated() {
+        let idx = Int(c.asciiValue! - Character("a").asciiValue!);
+        // 这个位置出现过了。不算它
+        if cs[idx] != -1 {
+            print("\(c)出现两次")
+            cs[idx] = -1
+        } else {
+            // 只出现一次的
+            cs[idx] = i
+        }
+    }
     
+    print(cs)
+    for (i, ci) in cs.enumerated() {
+        if ci != -1 && ci >= 0 {
+            // 找到了
+            print(i + Int( Character("a").asciiValue!))
+            return nil
+        }
+    }
+    return nil
 }

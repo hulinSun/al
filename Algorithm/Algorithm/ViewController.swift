@@ -99,5 +99,7 @@ class ViewController: UIViewController {
         
 //        print(threeSum([0,0,0]))
         print(threeSum([1,-1,-1,0]))
+        
+        _ = firstExsitChar(str: "abaccdeff")
     }
 }
