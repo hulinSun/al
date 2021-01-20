@@ -379,3 +379,39 @@ func mergeTwoLists2(_ l1: LeeListNode?, _ l2: LeeListNode?) -> LeeListNode? {
     }
     return nil
 }
+
+
+/// 判断两个链表是否相交
+
+/// 第一种情况；如果链表都没有环的情况。就看最后一个是否相等
+func isJoined(_ l1: LeeListNode?, l2: LeeListNode?) -> Bool {
+    if l1 == nil || l2 == nil {
+        return false
+    }
+    var c1 = l1
+    var c2 = l2
+    while c1?.next != nil {
+        c1 = c1?.next
+    }
+    while c2?.next != nil {
+        c2 = c2?.next
+    }
+    return c1?.val == c2?.val
+}
+
+/// 第二种方法。顺便找到第一个相交的节点
+func isJoined2(_ l1: LeeListNode?, l2: LeeListNode?) -> LeeListNode? {
+    if l1 == nil || l2 == nil {
+        return nil
+    }
+    var c1 = l1
+    var c2 = l2
+    while c1?.next != nil {
+        c1 = c1?.next == nil ? c2 : c1?.next
+        c2 = c2?.next == nil ? c1 : c2?.next
+        if c2?.val == c1?.val {
+            return c2
+        }
+    }
+    return nil
+}

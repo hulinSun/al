@@ -211,3 +211,26 @@ func getInfo(node: TreeNode?) -> TreeNodeInfo? {
     }
     return left != nil ? left : right
 }
+
+
+/// 二叉树的中序遍历
+/// https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+func inorderTraversal(_ root: TreeNode?) -> [Int] {
+    func pinorderTraversal(node: TreeNode?, res: inout [Int]) {
+        if node == nil {
+            return
+        }
+        if node?.left != nil {
+            pinorderTraversal(node: node?.left, res: &res)
+        }
+        
+        res.append(node!.val)
+        
+        if node?.right != nil {
+            pinorderTraversal(node: node?.right, res: &res)
+        }
+    }
+    var res = [Int]()
+    pinorderTraversal(node: root, res: &res)
+    return res
+}
