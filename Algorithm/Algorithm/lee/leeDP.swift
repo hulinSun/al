@@ -239,10 +239,9 @@ func longestPalindrome3(_ s: String) -> String {
         cs[i] = c
         rcs[count - 1 - i] = c
     }
-    print(cs)
-    print(rcs)
     var dp = Array2D<Int>(columns: cs.count, rows: cs.count, initialValue: 0)
     var maxLong = 0
+    var maxEnd = 0
     for row in 0..<dp.rows {
         for col in 0..<dp.columns {
             if cs[row] == rcs[col] {
@@ -252,12 +251,15 @@ func longestPalindrome3(_ s: String) -> String {
                     dp[row,col] = dp[row - 1, col - 1] + 1
                 }
             }
-            maxLong = max(maxLong, dp[row,col])
+            if dp[row,col] > maxLong {
+                maxLong = dp[row,col]
+                maxEnd = row
+            }
         }
     }
-    print(dp)
-    
-    return ""
+    let ls = String(cs[maxEnd - maxLong + 1 ... maxEnd])
+    print(ls)
+    return ls
 }
 
 /// 扩展中心法
