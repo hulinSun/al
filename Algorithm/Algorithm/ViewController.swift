@@ -46,7 +46,7 @@ class ViewController: UIViewController {
 //        dailyTemperaturesTest()
 //        isAnagramTest()
 //        reverseWordsTest()
-        lengthOfLongestSubstringTest()
+//        lengthOfLongestSubstringTest()
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
@@ -98,8 +98,10 @@ class ViewController: UIViewController {
 //        print(threeSum([-1,0,1,2,-1,-4]))
         
 //        print(threeSum([0,0,0]))
-        print(threeSum([1,-1,-1,0]))
+//        print(threeSum([1,-1,-1,0]))
+//        _ = firstExsitChar(str: "abaccdeff")
         
-        _ = firstExsitChar(str: "abaccdeff")
+        print(longNumber(str: "abcd12345ed125ss123456789"))
     }
 }
+

@@ -274,3 +274,33 @@ func firstExsitChar(str: String) -> Character? {
     }
     return nil
 }
+
+
+
+func longNumber(str: String) -> Int {
+    if str.count == 0 {
+        return 0
+    }
+    var cs = Array<Character>(repeating: " ", count: str.count)
+    for (i,c) in str.enumerated() {
+        cs[i] = c
+    }
+    var dp = Array<Int>(repeating: 0, count: str.count)
+    // dp[i] 是以i idx 结尾的最长数字串
+    if cs.first!.isNumber {
+        dp[0] = 1
+    } else {
+        dp[0] = 0
+    }
+    var long = dp[0]
+    for idx in 1..<cs.count {
+        if cs[idx].isNumber {
+            dp[idx] = dp[idx - 1] + 1
+        } else {
+            dp[idx] = 0
+        }
+        long = max(long, dp[idx])
+    }
+    print(dp)
+    return long
+}
