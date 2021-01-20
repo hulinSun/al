@@ -374,3 +374,25 @@ func threeSum(_ nums: [Int]) -> [[Int]] {
     }
     return result
 }
+
+/// 字符串到整数
+func stringToNum(str: String) -> Int {
+    if str.count == 0 {
+        return 0
+    }
+    var num = 0
+    for c in str {
+        if c.isNumber {
+            num = num * 10 + c.wholeNumberValue!
+        } else {
+            // 不是字符
+            return 0
+        }
+    }
+    return num
+}
+
+
+/// 数组中重复的数字
+
+

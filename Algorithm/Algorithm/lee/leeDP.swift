@@ -227,6 +227,39 @@ func longestPalindrome(_ s: String) -> String {
     return longStr
 }
 
+/// 反转做法
+func longestPalindrome3(_ s: String) -> String {
+    if s.count == 0 {
+        return ""
+    }
+    let count = s.count
+    var cs = Array<Character>(repeating: " ", count: count)
+    var rcs = Array<Character>(repeating: " ", count: count)
+    for (i,c) in s.enumerated() {
+        cs[i] = c
+        rcs[count - 1 - i] = c
+    }
+    print(cs)
+    print(rcs)
+    var dp = Array2D<Int>(columns: cs.count, rows: cs.count, initialValue: 0)
+    var maxLong = 0
+    for row in 0..<dp.rows {
+        for col in 0..<dp.columns {
+            if cs[row] == rcs[col] {
+                if row == 0 || col == 0 {
+                    dp[row,col] = 1
+                } else {
+                    dp[row,col] = dp[row - 1, col - 1] + 1
+                }
+            }
+            maxLong = max(maxLong, dp[row,col])
+        }
+    }
+    print(dp)
+    
+    return ""
+}
+
 /// 扩展中心法
 func longestPalindrome2(_ s: String) -> String {
     if s.count == 0 {
@@ -270,8 +303,38 @@ func palindromeLength(cs: [Character],  l: Int,  r: Int) -> Int {
     return right - left - 1
 }
 
+/**
+public String longestPalindrome(String s) {
+    if (s.equals(""))
+        return "";
+    String origin = s;
+    String reverse = new StringBuffer(s).reverse().toString(); //字符串倒置
+    int length = s.length();
+    int[][] arr = new int[length][length];
+    int maxLen = 0;
+    int maxEnd = 0;
+    for (int i = 0; i < length; i++)
+        for (int j = 0; j < length; j++) {
+            if (origin.charAt(i) == reverse.charAt(j)) {
+                if (i == 0 || j == 0) {
+                    arr[i][j] = 1;
+                } else {
+                    arr[i][j] = arr[i - 1][j - 1] + 1;
+                }
+            }
+            if (arr[i][j] > maxLen) {
+                maxLen = arr[i][j];
+                maxEnd = i; //以 i 位置结尾的字符
+            }
+
+        }
+    }
+    return s.substring(maxEnd - maxLen + 1, maxEnd + 1);
+}
+*/
+
 func longestPalindromeTest() {
-    _ = longestPalindrome2("dadbaabfds")
+    _ = longestPalindrome3("dadbaabfds")
 }
 
 /// 最大连续子数组的和

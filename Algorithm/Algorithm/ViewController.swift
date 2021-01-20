@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
-//        longestPalindromeTest()
+        longestPalindromeTest()
 //        NumberSolution.test()
 //        PermuteSoultion3.test()
         // ParenthesisSolution.ParenthesisSolutionTest()
@@ -102,7 +102,9 @@ class ViewController: UIViewController {
 //        _ = firstExsitChar(str: "abaccdeff")
         
 //        print(longNumber(str: "abcd12345ed125ss123456789"))
-        print(rotatekString(str: "abcdefg"))
+//        print(rotatekString(str: "abcdefg"))
+        
+        print(stringToNum(str: "32a6"))
     }
 }
 
