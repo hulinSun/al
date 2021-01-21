@@ -463,3 +463,37 @@ func twoSum2(_ nums: [Int], _ target: Int) -> [Int] {
     }
     return result
 }
+
+//输入: s = "abcabcbb"
+//输出: 3
+//解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+func lengthOfLongestSubstringx(_ s: String) -> Int {
+    if s.count == 0 {
+        return 0
+    }
+    var cs = Array<Character>(repeating: " ", count: s.count)
+    for (i,c) in s.enumerated() {
+        cs[i] = c
+    }
+    // key 是字符， value 是之前出现的idx
+    var pres = Dictionary<Character,Int>()
+    pres[s.first!] = 0
+    var left = 0
+    var maxLong = 1
+    for idx in 1..<cs.count {
+        let c = cs[idx]
+        // 之前没出现过
+        if !pres.keys.contains(c) {
+            // 什么都不做
+        } else {
+            // 之前出现过了
+            let pidx = pres[c]!
+            left = max(left, pidx + 1)
+        }
+        maxLong = max(maxLong, idx - left + 1)
+        print(String(cs[left...idx]))
+        pres[c] = idx
+    }
+    print(maxLong)
+    return maxLong
+}
