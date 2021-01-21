@@ -343,7 +343,7 @@ public String longestPalindrome(String s) {
 */
 
 func longestPalindromeTest() {
-    _ = longestPalindrome("babad")
+    _ = longestPalindrome4("cbbd")
 }
 
 /// 最大连续子数组的和
@@ -486,8 +486,10 @@ func longestPalindrome4(_ s: String) -> String {
                 }
             }
             if dp[i,j] == true {
-                maxL = max(maxL, j - i + 1)
-                longS = String(cs[i...j])
+                if j - i + 1 > maxL {
+                    maxL = j - i + 1
+                    longS = String(cs[i...j])
+                }
             }
         }
     }
