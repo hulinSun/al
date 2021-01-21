@@ -104,7 +104,7 @@ class ViewController: UIViewController {
 //        print(longNumber(str: "abcd12345ed125ss123456789"))
 //        print(rotatekString(str: "abcdefg"))
         
-        print(stringToNum(str: "32a6"))
+//        print(stringToNum(str: "145"))
     }
 }
 

@@ -443,6 +443,23 @@ func minPathSum(_ grid: [[Int]]) -> Int {
     return dp[row - 1, col - 1]
 }
 
-
-
-
+/// 两数之和
+/// 返回下标
+func twoSum2(_ nums: [Int], _ target: Int) -> [Int] {
+    if nums.count <= 1 {
+        return [Int]()
+    }
+    var result = [Int]()
+    var dict = Dictionary<Int,Int>()
+    // 大于两个
+    for (idx,item) in nums.enumerated() {
+        // key 是值 ，value 是下标
+        // target - item
+        if dict.keys.contains(target - item) {
+            result.append(idx)
+            result.append(dict[target - item]!)
+        }
+        dict[item] = idx
+    }
+    return result
+}
