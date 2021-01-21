@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
-//        longestPalindromeTest()
+        longestPalindromeTest()
 //        NumberSolution.test()
 //        PermuteSoultion3.test()
         // ParenthesisSolution.ParenthesisSolutionTest()
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         
 //        print(stringToNum(str: "145"))
         
-        _ = lengthOfLongestSubstringx("abcabcbb")
+//        _ = lengthOfLongestSubstringx("abcabcbb")
     }
 }
 

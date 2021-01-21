@@ -196,6 +196,7 @@ func longestPalindrome(_ s: String) -> String {
         cs[i] = c
     }
     dp[0,0] = true
+    // babad
     // dp[i,j] 代表 s[i,j] 是否是回文字符串
     var maxLong = 1
     var longStr = ""
@@ -203,6 +204,7 @@ func longestPalindrome(_ s: String) -> String {
     for row in (0..<dp.rows).reversed() {
         // 从左到右（j由小到大）
         for col in row..<dp.columns {
+            print(row,col)
             // 如果长度小于等于1，判断是否相等就好了，两个或者一个字符串
             if col - row <= 1 && cs[row] == cs[col]{
                 dp[row,col] = true
@@ -223,11 +225,14 @@ func longestPalindrome(_ s: String) -> String {
             }
         }
     }
+    
+    print(dp)
     print(longStr,maxLong)
     return longStr
 }
 
 /// 反转做法
+/// 正着和反着读一样，那我们是不是把原来的字符串倒置了，然后找最长的公共子串就可以了。例如 S = "caba" ，S = "abac"，最长公共子串是 "aba"，所以原字符串的最长回文串就是 "aba"。
 func longestPalindrome3(_ s: String) -> String {
     if s.count == 0 {
         return ""
@@ -251,12 +256,14 @@ func longestPalindrome3(_ s: String) -> String {
                     dp[row,col] = dp[row - 1, col - 1] + 1
                 }
             }
+            print(cs[row],rcs[col])
             if dp[row,col] > maxLong {
                 maxLong = dp[row,col]
                 maxEnd = row
             }
         }
     }
+    print(dp)
     let ls = String(cs[maxEnd - maxLong + 1 ... maxEnd])
     print(ls)
     return ls
@@ -336,7 +343,7 @@ public String longestPalindrome(String s) {
 */
 
 func longestPalindromeTest() {
-    _ = longestPalindrome3("dadbaabfds")
+    _ = longestPalindrome("babad")
 }
 
 /// 最大连续子数组的和
@@ -441,4 +448,50 @@ func minPathSum(_ grid: [[Int]]) -> Int {
         }
     }
     return dp[row - 1, col - 1]
+}
+
+func longestPalindrome4(_ s: String) -> String {
+    if s.count == 0 {
+        return ""
+    }
+    if s.count == 1 {
+        return s
+    }
+    // 两个字符串起步
+    var cs = Array<Character>(repeating: " ", count: s.count)
+    for (i,c) in s.enumerated() {
+        cs[i] = c
+    }
+    var dp = Array2D<Bool>(columns: cs.count, rows: cs.count, initialValue: false)
+    /// dp[i,j] = s[i,j] 是否是回文
+    /// dp[i,j] = dp[i + 1,j - 1] && s[i] == s[j]
+    /// dp[i , j] 必须知道dp[i + 1, j - 1]
+    /// i 从大到小， j 从小到大
+    var maxL = 0
+    var longS = ""
+    
+    for i in (0..<dp.rows).reversed() {
+        for j in 0..<dp.columns {
+            if j - i < 0 {
+                continue
+            }
+            // 一个字符串
+            if j - i <= 1 {
+                if cs[i] == cs[j] {
+                    dp[i,j] = true
+                }
+            } else {
+                if cs[i] == cs[j] && dp[i + 1, j - 1]  {
+                    dp[i, j] = true
+                }
+            }
+            if dp[i,j] == true {
+                maxL = max(maxL, j - i + 1)
+                longS = String(cs[i...j])
+            }
+        }
+    }
+    print(dp)
+    print(longS)
+    return longS
 }
