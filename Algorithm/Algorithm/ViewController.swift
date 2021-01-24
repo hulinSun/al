@@ -114,9 +114,10 @@ class ViewController: UIViewController {
 //        var a = [3,1,2,5,3,2]
 //        print(ArrayList.findDuplicates(&a))
         
-       print( spiralOrder([ [1,2],
-                            [3,4]
-       ]))
+//       print( spiralOrder([ [1,2],
+//                            [3,4]
+//       ]))
+        LRUCache.lruTest()
     }
 }
 
