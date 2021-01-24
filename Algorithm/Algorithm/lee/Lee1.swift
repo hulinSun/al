@@ -494,3 +494,60 @@ func getDumpNum(num: inout [Int]) -> [Int] {
     print(res)
     return res
 }
+
+
+
+/// https://leetcode-cn.com/problems/spiral-matrix/
+/// 螺旋矩阵
+/**
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+*/
+
+func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+    if matrix.count == 0 {
+        return [Int]()
+    }
+    var res = Array<Int>()
+    // 上 右 下 左
+    var top = 0
+    var bottom = matrix.count - 1
+    var left = 0
+    var right = matrix[0].count - 1
+    while left <= right && top <= bottom {
+        // 左右
+        for idx in left...right {
+            res.append(matrix[top][idx])
+        }
+        top += 1
+        if top > bottom {
+            break
+        }
+        // 右下
+        for idx in top...bottom {
+            res.append(matrix[idx][right])
+        }
+        right -= 1
+        if left > right {
+            break
+        }
+        //右左
+        for idx in (left...right).reversed() {
+            res.append(matrix[bottom][idx])
+        }
+        bottom -= 1
+        if top > bottom {
+            break
+        }
+        // 左上
+        for idx in (top...bottom).reversed() {
+            res.append(matrix[idx][left])
+        }
+        left += 1
+    }
+    
+    return res
+}
