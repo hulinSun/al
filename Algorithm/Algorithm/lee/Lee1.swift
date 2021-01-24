@@ -183,15 +183,14 @@ func sortColors(_ nums: inout [Int]) {
         }
     }
 }
+func swap(nums: inout [Int], i: Int, j: Int) {
+    let temp = nums[i]
+    nums[i] = nums[j]
+    nums[j] = temp
+}
 
 /// 指针一趟搞定
 func sortColors2(_ nums: inout [Int]) {
-    func swap(nums: inout [Int], i: Int, j: Int) {
-        let temp = nums[i]
-        nums[i] = nums[j]
-        nums[j] = temp
-    }
-    
     if nums.count == 0 {
         return
     }
@@ -470,3 +469,28 @@ func maxAreaa(_ height: [Int]) -> Int {
     return maxA
 }
 
+
+/// 数组中重复的数
+/// 0 ~ n个数。
+func getDumpNum(num: inout [Int]) -> [Int] {
+    if num.count == 0 {
+        return [Int]()
+    }
+    print(num)
+    var res = [Int]()
+    /// 贼他妈重要的判断
+    for idx in 0..<num.count {
+        while num[idx] != num[num[idx]] && num[idx] < num.count {
+            swap(nums: &num, i: num[idx], j: idx)
+        }
+    }
+    print(num)
+    for (idx, item) in num.enumerated() {
+        if idx != item {
+            res.append(item)
+        }
+    }
+   
+    print(res)
+    return res
+}

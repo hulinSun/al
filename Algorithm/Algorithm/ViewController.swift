@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
-        longestPalindromeTest()
+//        longestPalindromeTest()
 //        NumberSolution.test()
 //        PermuteSoultion3.test()
         // ParenthesisSolution.ParenthesisSolutionTest()
@@ -107,6 +107,12 @@ class ViewController: UIViewController {
 //        print(stringToNum(str: "145"))
         
 //        _ = lengthOfLongestSubstringx("abcabcbb")
+        
+        var a = [3,1,0,2,5,3,2]
+        _ = getDumpNum(num: &a)
+        
+//        var a = [3,1,2,5,3,2]
+//        print(ArrayList.findDuplicates(&a))
     }
 }
 
