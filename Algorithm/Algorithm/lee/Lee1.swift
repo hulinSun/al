@@ -582,3 +582,61 @@ func reverse(_ x: Int) -> Int {
 //    }
 //    return res;
 //}
+
+
+// 会议室
+func canJoin(num: [[Int]]) -> Bool {
+    if num.count == 0 {
+        return true
+    }
+    //根据开始时间排序
+    var meeting = num
+    meeting.sort { (m1, m2) -> Bool in
+        return m1[0] < m2[0]
+    }
+    print(meeting)
+    
+    for idx in 1..<meeting.count {
+        // 前一个
+        let pre = meeting[idx - 1]
+        let cur = meeting[idx]
+        
+        // 如果当前的开始时间 小于前一个的结束时间，那么不能全部参加
+        if cur[0] < pre[1] {
+            return false
+        }
+    }
+    
+    return true
+}
+
+
+/// 会议室2 。会议室个数
+func getMeetingCount(num: [[Int]]) -> Int {
+    if num.count == 0 {
+        return 0
+    }
+    //根据开始时间排序
+    var meeting = num
+    meeting.sort { (m1, m2) -> Bool in
+        return m1[0] < m2[0]
+    }
+    print(meeting)
+    // 用小顶堆。【重要】
+    let heap = BinaryHeap { (a, b) -> Bool in
+        return a < b
+    }
+    // 堆立面有东西
+    // 放最早的结束时间
+    heap.add(ele: meeting[0][1])
+    for idx in 1..<meeting.count {
+        let cur = meeting[idx]
+        // 开始时间在之前结束会议之后。可以复用
+        if cur[0] > heap.get() {
+            _ = heap.remove()
+        }
+        heap.add(ele: cur[1])
+    }
+    
+    return heap.size
+}

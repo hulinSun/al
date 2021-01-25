@@ -119,7 +119,11 @@ class ViewController: UIViewController {
 //       ]))
 //        LRUCache.lruTest()
         
-        print(reverse(123))
+//        print(reverse(123))
+//        print(canJoin(num: [[5,10],[0,30],[15,20]]))
+//        print(canJoin(num: [[7,10],[2,4]]))
+        
+        print(getMeetingCount(num: [[5,10],[0,30],[15,20]]))
     }
 }
 
