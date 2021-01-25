@@ -551,3 +551,34 @@ func spiralOrder(_ matrix: [[Int]]) -> [Int] {
     
     return res
 }
+
+/// https://leetcode-cn.com/problems/reverse-integer/
+/// 整数反转
+func reverse(_ x: Int) -> Int {
+    var res = 0
+    var n = x
+    var pre = 0
+    while n != 0 {
+        pre = res
+        let mod = n % 10
+        res = mod + pre * 10
+        if (res - mod) / 10 != pre {
+            return 0
+        }
+        n = n / 10
+    }
+    return res
+}
+
+
+//public int reverse(int x) {
+//    int res = 0;
+//    while (x != 0) {
+//        int prevRes = res;
+//        int mod = x % 10;
+//        res = prevRes * 10 + mod;
+//        if ((res - mod) / 10 != prevRes) return 0;
+//        x /= 10;
+//    }
+//    return res;
+//}

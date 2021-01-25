@@ -117,7 +117,9 @@ class ViewController: UIViewController {
 //       print( spiralOrder([ [1,2],
 //                            [3,4]
 //       ]))
-        LRUCache.lruTest()
+//        LRUCache.lruTest()
+        
+        print(reverse(123))
     }
 }
 
