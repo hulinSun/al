@@ -125,7 +125,11 @@ class ViewController: UIViewController {
         
 //        print(getMeetingCount(num: [[5,10],[0,30],[15,20]]))
         
-        trap([0,1,0,2,1,0,1,3,2,1,2,1])
+//        _ = trap([0,1,0,2,1,0,1,3,2,1,2,1])
+//        print(containNum(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
+//        print(containNum2(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
+        
+        _ = replaceSpace(str: "we are happy, yes we are")
     }
 }
 

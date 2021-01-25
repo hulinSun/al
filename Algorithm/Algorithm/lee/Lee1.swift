@@ -674,3 +674,53 @@ func trap(_ height: [Int]) -> Int {
     
     return res
 }
+
+
+/// 有序二维数组查找数字
+/// 行从左到右变大。 列从上到下变大
+func containNum(num: [[Int]], target: Int) -> Bool {
+    // 右上角
+    if num.count == 0 {
+        return false
+    }
+    let row = num.count - 1
+    let col = num[0].count - 1
+    var top = 0
+    var right = col
+    // 从右上角开始
+    while top < row && right > 0 {
+        print("遍历到\(num[top][right])")
+        if num[top][right] == target {
+            return true
+        } else if num[top][right] > target {
+            right -= 1
+        } else {
+            top += 1
+        }
+    }
+    return false
+}
+
+func containNum2(num: [[Int]], target: Int) -> Bool {
+    if num.count == 0 {
+        return false
+    }
+    // 考虑从左下角开始
+    let row = num.count - 1
+    let col = num[0].count - 1
+    var bottom = row
+    var left = 0
+    // 从右上角开始
+    while bottom > 0 && left < col {
+        print("遍历到\(num[bottom][left])")
+        if num[bottom][left] == target {
+            return true
+        } else if num[bottom][left] > target {
+            bottom -= 1
+        } else {
+            left += 1
+        }
+    }
+    return false
+}
+
