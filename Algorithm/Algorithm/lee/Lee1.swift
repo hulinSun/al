@@ -640,3 +640,37 @@ func getMeetingCount(num: [[Int]]) -> Int {
     
     return heap.size
 }
+
+
+/// https://leetcode-cn.com/problems/trapping-rain-water/
+/// 接雨水
+func trap(_ height: [Int]) -> Int {
+    if height.count == 0 || height.count == 1{
+        return 0
+    }
+   
+    var leftMax = Array<Int>(repeating: 0, count: height.count)
+    var rightMax = Array<Int>(repeating: 0, count: height.count)
+    let lastIdx = height.count - 1
+    for idx in 1..<lastIdx {
+        // 左边的最大值
+       leftMax[idx] = max(leftMax[idx - 1], height[idx - 1])
+    }
+    
+    for idx in (1..<lastIdx).reversed(){
+        rightMax[idx] = max(rightMax[idx + 1], height[idx + 1])
+    }
+    
+    var res = 0
+    // 第一根柱子跟最后一个柱子都没水
+    for idx in 1..<lastIdx {
+        let minMax = min(leftMax[idx], rightMax[idx])
+        // 说明这根柱子不能放水
+        if (minMax <= height[idx]) {
+            continue
+        }
+        res += (minMax - height[idx])
+    }
+    
+    return res
+}
