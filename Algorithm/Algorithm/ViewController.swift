@@ -129,7 +129,11 @@ class ViewController: UIViewController {
 //        print(containNum(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
 //        print(containNum2(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
         
-        _ = replaceSpace(str: "we are happy, yes we are")
+//        _ = replaceSpace(str: "we are happy, yes we are")
+        
+//        let root = rebuild(pre: [1,2,4,7,3,5,6,8], inorder: [4,7,2,1,5,3,8,6])
+//        treeInorder(node: root)
+//        treepreorder(node: root)
     }
 }
 
