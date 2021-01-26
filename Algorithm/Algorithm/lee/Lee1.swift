@@ -470,42 +470,6 @@ func maxAreaa(_ height: [Int]) -> Int {
 }
 
 
-
-//[
-//     [1],
-//    [1,1],
-//   [1,2,1],
-//  [1,3,3,1],
-// [1,4,6,4,1]
-//]
-/// 杨辉三角
-func getRow(_ n: Int) -> [[Int]] {
-    if n == 0 {
-        return[[Int]]()
-    }
-    var result = [[Int]]()
-    for idx in 1...n {
-        var sub = Array<Int>(repeating: 1, count: idx)
-        result.append(sub)
-    }
-    if n == 1 || n == 2 {
-        return result
-    }
-    
-    for idx in 3..<n {
-        // 取出之前的
-        var prev = result[idx - 1]
-        var current = result[idx]
-        for pi in 0..<prev.count - 1 {
-            current[pi + 1] = prev[pi] + prev[pi + 1]
-        }
-    }
-    
-    print(result)
-    return result
-}
-
-
 /// 数组中重复的数
 /// 0 ~ n个数。
 func getDumpNum(num: inout [Int]) -> [Int] {
@@ -758,5 +722,36 @@ func containNum2(num: [[Int]], target: Int) -> Bool {
         }
     }
     return false
+}
+
+//[
+//     [1],
+//    [1,1],
+//   [1,2,1],
+//  [1,3,3,1],
+// [1,4,6,4,1]
+//]
+/// 杨辉三角
+func getRow(_ n: Int) -> [[Int]] {
+    if n == 0 {
+        return[[Int]]()
+    }
+    var result = [[Int]]()
+    for idx in 1...n {
+        var sub = Array<Int>(repeating: 1, count: idx)
+        if idx > 2 {
+            // 取出之前的
+            let prev = result[idx - 1 - 1]
+            for pi in 0..<prev.count - 1 {
+                sub[pi + 1] = prev[pi] + prev[pi + 1]
+            }
+        }
+        result.append(sub)
+    }
+    
+    result.forEach { (item) in
+        print(item)
+    }
+    return result
 }
 

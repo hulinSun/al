@@ -108,7 +108,6 @@ class ViewController: UIViewController {
         
 //        _ = lengthOfLongestSubstringx("abcabcbb")
         
-
         _ = getRow(6)
 
 //        var a = [3,1,0,2,5,3,2]
