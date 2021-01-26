@@ -724,3 +724,34 @@ func containNum2(num: [[Int]], target: Int) -> Bool {
     return false
 }
 
+/// 旋转数组的最小数字
+func rotareMin(num: [Int]) -> Int {
+    if num.count == 0 {
+        return 0
+    }
+    if num.count == 1 {
+        return num[0]
+    }
+    if num.count == 2 {
+        return max(num[0], num[1])
+    }
+    // 12345
+    // 3 4 5 1 2
+    var left = 0
+    var right = num.count - 1
+    while num[left] >= num[right] {
+        if right - left == 1 {
+            return num[right]
+        }
+        
+        let mid = (left + right) / 2
+        // 先确认那边是有序的
+        // 左边是有序的. 最小值在右边
+        if num[left] <= num[mid] {
+            left = mid
+        } else if num[mid] <= num[right] {
+            right = mid
+        }
+    }
+    return 0
+}

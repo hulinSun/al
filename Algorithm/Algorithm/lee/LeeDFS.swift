@@ -259,3 +259,37 @@ class ParenthesisSolution {
         print(ParenthesisSolution().generateParenthesis(1))
     }
 }
+
+/// 矩阵中是否某个字符串的路径
+/// 只能上下左右移动一格
+class MatrixPathSolution {
+    private var sel: [Character]!
+    private var matrix: [[Character]]!
+    private var res: [String]!
+    func generateParenthesis(nums:[[Character]], str: String) -> Bool {
+        if nums.count == 0 {
+            return false
+        }
+        matrix = nums
+        res = [String]()
+        dfs(idx: 0)
+        
+        for s in res {
+            if s == str {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func dfs(idx: Int) {
+        if idx == sel.count {
+            // 对比
+            let s = String(sel)
+            res.append(s)
+            return
+        }
+        
+       
+    }
+}

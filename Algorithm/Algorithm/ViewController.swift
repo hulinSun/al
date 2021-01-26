@@ -134,6 +134,9 @@ class ViewController: UIViewController {
 //        let root = rebuild(pre: [1,2,4,7,3,5,6,8], inorder: [4,7,2,1,5,3,8,6])
 //        treeInorder(node: root)
 //        treepreorder(node: root)
+        
+//        print(rotareMin(num: [3,4,5,6,7,8,1,2]))
+        print(rotareMin(num: [8,1,2]))
     }
 }
 
