@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         
 //        _ = lengthOfLongestSubstringx("abcabcbb")
         
-        _ = getRow(6)
+//        _ = getRow(6)
 
 //        var a = [3,1,0,2,5,3,2]
 //        _ = getDumpNum(num: &a)
@@ -137,6 +137,7 @@ class ViewController: UIViewController {
 //        treeInorder(node: root)
 //        treepreorder(node: root)
         
+        getLongDecreaseSeq(num: [9,4,3,2,5,4,3,2])
     }
 }
 

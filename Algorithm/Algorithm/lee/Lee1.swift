@@ -755,3 +755,22 @@ func getRow(_ n: Int) -> [[Int]] {
     return result
 }
 
+/// 最长递减子序列
+func getLongDecreaseSeq(num: [Int]) -> Int {
+    if num.count == 0 {
+        return 0
+    }
+    var dp = Array<Int>.init(repeating: 1, count: num.count)
+    dp[0] = 1
+    var maxDp = dp[0]
+    for idx in 1..<dp.count {
+        if num[idx] < num[idx - 1] {
+            dp[idx] = dp[idx - 1] + 1
+        } else {
+            dp[idx] = 1
+        }
+        maxDp = max(maxDp, dp[idx])
+    }
+    print(dp)
+    return maxDp
+}
