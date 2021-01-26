@@ -470,3 +470,39 @@ func maxAreaa(_ height: [Int]) -> Int {
     return maxA
 }
 
+
+//[
+//     [1],
+//    [1,1],
+//   [1,2,1],
+//  [1,3,3,1],
+// [1,4,6,4,1]
+//]
+/// 杨辉三角
+func getRow(_ n: Int) -> [[Int]] {
+    if n == 0 {
+        return[[Int]]()
+    }
+    var result = [[Int]]()
+    for idx in 1...n {
+        var sub = Array<Int>(repeating: 1, count: idx)
+        result.append(sub)
+    }
+    if n == 1 || n == 2 {
+        return result
+    }
+    
+    for idx in 3..<n {
+        // 取出之前的
+        var prev = result[idx - 1]
+        var current = result[idx]
+        for pi in 0..<prev.count - 1 {
+            current[pi + 1] = prev[pi] + prev[pi + 1]
+        }
+    }
+    
+    print(result)
+    return result
+}
+
+

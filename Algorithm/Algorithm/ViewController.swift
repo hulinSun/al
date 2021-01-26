@@ -107,6 +107,8 @@ class ViewController: UIViewController {
 //        print(stringToNum(str: "145"))
         
 //        _ = lengthOfLongestSubstringx("abcabcbb")
+        
+        _ = getRow(6)
     }
 }
 
