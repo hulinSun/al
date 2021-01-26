@@ -755,3 +755,54 @@ func rotareMin(num: [Int]) -> Int {
     }
     return 0
 }
+    
+//[
+//     [1],
+//    [1,1],
+//   [1,2,1],
+//  [1,3,3,1],
+// [1,4,6,4,1]
+//]
+/// 杨辉三角
+func getRow(_ n: Int) -> [[Int]] {
+    if n == 0 {
+        return[[Int]]()
+    }
+    var result = [[Int]]()
+    for idx in 1...n {
+        var sub = Array<Int>(repeating: 1, count: idx)
+        if idx > 2 {
+            // 取出之前的
+            let prev = result[idx - 1 - 1]
+            for pi in 0..<prev.count - 1 {
+                sub[pi + 1] = prev[pi] + prev[pi + 1]
+            }
+        }
+        result.append(sub)
+    }
+    
+    result.forEach { (item) in
+        print(item)
+    }
+    return result
+}
+
+/// 最长递减子序列
+func getLongDecreaseSeq(num: [Int]) -> Int {
+    if num.count == 0 {
+        return 0
+    }
+    var dp = Array<Int>.init(repeating: 1, count: num.count)
+    dp[0] = 1
+    var maxDp = dp[0]
+    for idx in 1..<dp.count {
+        if num[idx] < num[idx - 1] {
+            dp[idx] = dp[idx - 1] + 1
+        } else {
+            dp[idx] = 1
+        }
+        maxDp = max(maxDp, dp[idx])
+    }
+    print(dp)
+    return maxDp
+}
