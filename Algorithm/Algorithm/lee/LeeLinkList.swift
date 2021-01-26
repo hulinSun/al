@@ -412,3 +412,136 @@ func isJoined2(_ l1: LeeListNode?, l2: LeeListNode?) -> LeeListNode? {
     }
     return c1
 }
+
+/// LRU
+/// https://leetcode-cn.com/problems/lru-cache/
+class LRUCache {
+    class LRUNode: CustomStringConvertible {
+        var next: LRUNode?
+        var pre: LRUNode?
+        var key: Int
+        var value: Int
+        init(k: Int, v: Int) {
+            key = k
+            value = v
+        }
+        var description: String {
+            return "\(value)"
+        }
+    }
+    
+    private var dict: Dictionary<Int,LRUNode>
+    private var head: LRUNode!
+    private var tail: LRUNode!
+    private var capa = 2
+    
+    init(_ capacity: Int) {
+        capa = capacity
+        dict = Dictionary<Int,LRUNode>()
+        head = LRUNode(k: 0, v: 0)
+        tail = LRUNode(k: 0, v: 0)
+        head.next = tail
+        tail.pre = head
+    }
+    
+    func get(_ key: Int) -> Int {
+        // 获取
+        if let node = dict[key] {
+            // 访问，放在最前面
+            removeNode(node: node)
+            insertHead(node: node)
+            
+            return node.value
+        }
+        return -1
+    }
+    
+    func put(_ key: Int, _ value: Int) {
+        // 存在
+        if let node = dict[key] {
+            node.value = value
+            removeNode(node: node)
+            insertHead(node: node)
+            dict[key] = node
+        } else {
+            // 不存在
+            // 容量
+            let node = LRUNode(k: key, v: value)
+            // 超过容量了.删除最后一个
+            if dict.count >= capa {
+                // 找到最后一个
+                let last = tail.pre
+                dict[last!.key] = nil
+                removeNode(node: last!)
+            }
+            dict[key] = node
+            insertHead(node: node)
+        }
+    }
+    
+    func removeNode(node: LRUNode) {
+        // 移除node
+        let pre = node.pre
+        let next = node.next
+        pre?.next = next
+        next?.pre = pre
+    }
+    
+    func insertHead(node: LRUNode) {
+        // head 下一个
+        let next = head.next
+        next?.pre = node
+        node.next = next
+        head.next = node
+        node.pre = head
+    }
+    func display() {
+        print(dict)
+        var s = ""
+        var v = head.next
+        while v?.next != nil {
+            s += " - \(v!.value)"
+            v = v?.next
+        }
+        s += "\n"
+        print(s)
+    }
+}
+
+extension LRUCache {
+    class func lruTest() {
+//        ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+//        [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+//        输出
+//        [null, null, null, 1, null, -1, null, -1, 3, 4]
+
+        let lRUCache =  LRUCache(2);
+        lRUCache.put(1, 1); // 缓存是 {1=1}
+        lRUCache.display()
+        
+        lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+        lRUCache.display()
+        
+        print(lRUCache.get(1));    // 返回 1
+        lRUCache.display()
+        
+        lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+        lRUCache.display()
+        
+        print(lRUCache.get(2));    // 返回 -1 (未找到)
+        lRUCache.display()
+        
+        lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+        lRUCache.display()
+        
+        print(lRUCache.get(1));    // 返回 -1 (未找到)
+        lRUCache.display()
+        
+        print(lRUCache.get(3));    // 返回 3
+        lRUCache.display()
+        
+        print(lRUCache.get(4));    // 返回 4
+        lRUCache.display()
+
+    }
+}

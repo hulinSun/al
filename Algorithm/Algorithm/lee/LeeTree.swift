@@ -266,3 +266,64 @@ func isPostOrderArray(root: TreeNode?, array: [Int]) -> Bool {
     var idx = 0
     return isPostOrderNum(node: root, idx: &idx, array: array)
 }
+
+
+/// 重建二叉树
+/// 知道前序遍历 跟中序遍历的结果，重建二叉树
+func rebuild(pre: [Int], inorder: [Int]) -> TreeNode? {
+    // 返回根节点
+    if pre.count == 0 || inorder.count == 0 || (pre.count != inorder.count) {
+        return nil
+    }
+    // 找到根节点值
+    let rootValue = pre.first!
+    let root = TreeNode(rootValue)
+    
+    print("创建了节点\(root.val)")
+    var rootIdx = 0
+    for (idx,item) in inorder.enumerated() {
+        if rootValue == item {
+            rootIdx = idx
+            break
+        }
+    }
+    var leftPre: [Int]
+    // 没有左子树
+    if rootIdx == 0 {
+        leftPre = [Int]()
+    } else {
+        // 有左子树
+        leftPre = Array<Int>(pre[1...rootIdx])
+    }
+    
+    let rightpre = Array<Int>(pre[rootIdx + 1..<pre.count])
+    let leftInorder = Array<Int>(inorder[0..<rootIdx])
+    let rightInorder = Array<Int>(inorder[(rootIdx + 1)..<inorder.count])
+    // 构建左子树
+    root.left = rebuild(pre: leftPre, inorder: leftInorder)
+    root.right = rebuild(pre: rightpre, inorder: rightInorder)
+    
+    return root
+}
+
+
+/// 遍历
+func treeInorder(node: TreeNode?) {
+    if node == nil {
+        return
+    }
+    treeInorder(node: node?.left)
+    print("遍历到了\(node!.val)")
+    treeInorder(node: node?.right)
+}
+
+
+func treepreorder(node: TreeNode?) {
+    if node == nil {
+        return
+    }
+    print("遍历到了\(node!.val)")
+    treepreorder(node: node?.left)
+    treepreorder(node: node?.right)
+}
+

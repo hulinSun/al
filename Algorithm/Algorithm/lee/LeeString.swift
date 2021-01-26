@@ -333,3 +333,44 @@ func rotatekString(str: String) -> String {
     
     return String(cs)
 }
+
+// 替换空格
+// 将空格替换为%20
+func replaceSpace(str: String) -> String {
+    if str.count == 0 {
+        return ""
+    }
+    var cs = Array<Character>(repeating: "-", count:str.count)
+    // 遍历查找，有几个空格
+    var spaceCount = 0
+    for (i,c) in str.enumerated() {
+        if c == " " {
+            spaceCount += 1
+        }
+        cs[i] = c
+    }
+    // 减去空格+换完之后的
+    let resCount = str.count - spaceCount + spaceCount * 3
+    var res = Array<Character>(repeating: "-", count: resCount)
+    var last = 0
+    for c in cs {
+        // 不是空格。直接累加
+        if c != " " {
+            res[last] = c
+            last += 1
+        } else {
+            // 是空格的话
+            res[last] = "%"
+            last += 1
+            
+            res[last] = "2"
+            last += 1
+            
+            res[last] = "0"
+            last += 1
+        }
+    }
+    let s = String(res)
+    print(s)
+    return s
+}

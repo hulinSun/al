@@ -50,7 +50,7 @@ class ViewController: UIViewController {
 //        maxValueTest()
 //        maxProfitTest()
 //        minDistanceTest()
-        longestPalindromeTest()
+//        longestPalindromeTest()
 //        NumberSolution.test()
 //        PermuteSoultion3.test()
         // ParenthesisSolution.ParenthesisSolutionTest()
@@ -108,7 +108,36 @@ class ViewController: UIViewController {
         
 //        _ = lengthOfLongestSubstringx("abcabcbb")
         
+
         _ = getRow(6)
+
+//        var a = [3,1,0,2,5,3,2]
+//        _ = getDumpNum(num: &a)
+        
+//        var a = [3,1,2,5,3,2]
+//        print(ArrayList.findDuplicates(&a))
+        
+//       print( spiralOrder([ [1,2],
+//                            [3,4]
+//       ]))
+//        LRUCache.lruTest()
+        
+//        print(reverse(123))
+//        print(canJoin(num: [[5,10],[0,30],[15,20]]))
+//        print(canJoin(num: [[7,10],[2,4]]))
+        
+//        print(getMeetingCount(num: [[5,10],[0,30],[15,20]]))
+        
+//        _ = trap([0,1,0,2,1,0,1,3,2,1,2,1])
+//        print(containNum(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
+//        print(containNum2(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
+        
+//        _ = replaceSpace(str: "we are happy, yes we are")
+        
+//        let root = rebuild(pre: [1,2,4,7,3,5,6,8], inorder: [4,7,2,1,5,3,8,6])
+//        treeInorder(node: root)
+//        treepreorder(node: root)
+        
     }
 }
 

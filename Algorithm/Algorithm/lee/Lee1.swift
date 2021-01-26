@@ -183,15 +183,14 @@ func sortColors(_ nums: inout [Int]) {
         }
     }
 }
+func swap(nums: inout [Int], i: Int, j: Int) {
+    let temp = nums[i]
+    nums[i] = nums[j]
+    nums[j] = temp
+}
 
 /// 指针一趟搞定
 func sortColors2(_ nums: inout [Int]) {
-    func swap(nums: inout [Int], i: Int, j: Int) {
-        let temp = nums[i]
-        nums[i] = nums[j]
-        nums[j] = temp
-    }
-    
     if nums.count == 0 {
         return
     }
@@ -471,6 +470,7 @@ func maxAreaa(_ height: [Int]) -> Int {
 }
 
 
+
 //[
 //     [1],
 //    [1,1],
@@ -505,4 +505,258 @@ func getRow(_ n: Int) -> [[Int]] {
     return result
 }
 
+
+/// 数组中重复的数
+/// 0 ~ n个数。
+func getDumpNum(num: inout [Int]) -> [Int] {
+    if num.count == 0 {
+        return [Int]()
+    }
+    print(num)
+    var res = [Int]()
+    /// 贼他妈重要的判断
+    for idx in 0..<num.count {
+        while num[idx] != num[num[idx]] && num[idx] < num.count {
+            swap(nums: &num, i: num[idx], j: idx)
+        }
+    }
+    print(num)
+    for (idx, item) in num.enumerated() {
+        if idx != item {
+            res.append(item)
+        }
+    }
+   
+    print(res)
+    return res
+}
+
+
+
+/// https://leetcode-cn.com/problems/spiral-matrix/
+/// 螺旋矩阵
+/**
+[
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+*/
+
+func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+    if matrix.count == 0 {
+        return [Int]()
+    }
+    var res = Array<Int>()
+    // 上 右 下 左
+    var top = 0
+    var bottom = matrix.count - 1
+    var left = 0
+    var right = matrix[0].count - 1
+    while left <= right && top <= bottom {
+        // 左右
+        for idx in left...right {
+            res.append(matrix[top][idx])
+        }
+        top += 1
+        if top > bottom {
+            break
+        }
+        // 右下
+        for idx in top...bottom {
+            res.append(matrix[idx][right])
+        }
+        right -= 1
+        if left > right {
+            break
+        }
+        //右左
+        for idx in (left...right).reversed() {
+            res.append(matrix[bottom][idx])
+        }
+        bottom -= 1
+        if top > bottom {
+            break
+        }
+        // 左上
+        for idx in (top...bottom).reversed() {
+            res.append(matrix[idx][left])
+        }
+        left += 1
+    }
+    
+    return res
+}
+
+/// https://leetcode-cn.com/problems/reverse-integer/
+/// 整数反转
+func reverse(_ x: Int) -> Int {
+    var res = 0
+    var n = x
+    var pre = 0
+    while n != 0 {
+        pre = res
+        let mod = n % 10
+        res = mod + pre * 10
+        if (res - mod) / 10 != pre {
+            return 0
+        }
+        n = n / 10
+    }
+    return res
+}
+
+
+//public int reverse(int x) {
+//    int res = 0;
+//    while (x != 0) {
+//        int prevRes = res;
+//        int mod = x % 10;
+//        res = prevRes * 10 + mod;
+//        if ((res - mod) / 10 != prevRes) return 0;
+//        x /= 10;
+//    }
+//    return res;
+//}
+
+
+// 会议室
+func canJoin(num: [[Int]]) -> Bool {
+    if num.count == 0 {
+        return true
+    }
+    //根据开始时间排序
+    var meeting = num
+    meeting.sort { (m1, m2) -> Bool in
+        return m1[0] < m2[0]
+    }
+    print(meeting)
+    
+    for idx in 1..<meeting.count {
+        // 前一个
+        let pre = meeting[idx - 1]
+        let cur = meeting[idx]
+        
+        // 如果当前的开始时间 小于前一个的结束时间，那么不能全部参加
+        if cur[0] < pre[1] {
+            return false
+        }
+    }
+    
+    return true
+}
+
+
+/// 会议室2 。会议室个数
+func getMeetingCount(num: [[Int]]) -> Int {
+    if num.count == 0 {
+        return 0
+    }
+    //根据开始时间排序
+    var meeting = num
+    meeting.sort { (m1, m2) -> Bool in
+        return m1[0] < m2[0]
+    }
+    print(meeting)
+    // 用小顶堆。【重要】
+    let heap = BinaryHeap { (a, b) -> Bool in
+        return a < b
+    }
+    // 堆立面有东西
+    // 放最早的结束时间
+    heap.add(ele: meeting[0][1])
+    for idx in 1..<meeting.count {
+        let cur = meeting[idx]
+        // 开始时间在之前结束会议之后。可以复用
+        if cur[0] > heap.get() {
+            _ = heap.remove()
+        }
+        heap.add(ele: cur[1])
+    }
+    
+    return heap.size
+}
+
+
+/// https://leetcode-cn.com/problems/trapping-rain-water/
+/// 接雨水
+func trap(_ height: [Int]) -> Int {
+    if height.count == 0 || height.count == 1{
+        return 0
+    }
+   
+    var leftMax = Array<Int>(repeating: 0, count: height.count)
+    var rightMax = Array<Int>(repeating: 0, count: height.count)
+    let lastIdx = height.count - 1
+    for idx in 1..<lastIdx {
+        // 左边的最大值
+       leftMax[idx] = max(leftMax[idx - 1], height[idx - 1])
+    }
+    
+    for idx in (1..<lastIdx).reversed(){
+        rightMax[idx] = max(rightMax[idx + 1], height[idx + 1])
+    }
+    
+    var res = 0
+    // 第一根柱子跟最后一个柱子都没水
+    for idx in 1..<lastIdx {
+        let minMax = min(leftMax[idx], rightMax[idx])
+        // 说明这根柱子不能放水
+        if (minMax <= height[idx]) {
+            continue
+        }
+        res += (minMax - height[idx])
+    }
+    
+    return res
+}
+
+
+/// 有序二维数组查找数字
+/// 行从左到右变大。 列从上到下变大
+func containNum(num: [[Int]], target: Int) -> Bool {
+    // 右上角
+    if num.count == 0 {
+        return false
+    }
+    let row = num.count - 1
+    let col = num[0].count - 1
+    var top = 0
+    var right = col
+    // 从右上角开始
+    while top < row && right > 0 {
+        print("遍历到\(num[top][right])")
+        if num[top][right] == target {
+            return true
+        } else if num[top][right] > target {
+            right -= 1
+        } else {
+            top += 1
+        }
+    }
+    return false
+}
+
+func containNum2(num: [[Int]], target: Int) -> Bool {
+    if num.count == 0 {
+        return false
+    }
+    // 考虑从左下角开始
+    let row = num.count - 1
+    let col = num[0].count - 1
+    var bottom = row
+    var left = 0
+    // 从右上角开始
+    while bottom > 0 && left < col {
+        print("遍历到\(num[bottom][left])")
+        if num[bottom][left] == target {
+            return true
+        } else if num[bottom][left] > target {
+            bottom -= 1
+        } else {
+            left += 1
+        }
+    }
+    return false
+}
 
