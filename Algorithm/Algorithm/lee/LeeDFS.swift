@@ -317,3 +317,55 @@ class MatrixPathSolution {
         return has
     }
 }
+
+/// 机器人的运动范围
+class MovingSolution {
+    private var visted: Array2D<Bool>!
+    private var rows = 0
+    private var cols = 0
+    private var limit = 0
+    
+    func canMoveing(r: Int, c: Int, k: Int) -> Int {
+        if r <= 0 || c <= 0 || k <= 0 {
+            return 0
+        }
+        rows = r
+        cols = c
+        limit = k
+        visted = Array2D<Bool>(columns: c, rows: r, initialValue: false)
+        return canMovingCore(row: 0, col: 0)
+    }
+    
+    func canMovingCore(row: Int, col: Int) -> Int {
+        var count = 0
+        if row >= 0 && row < rows && col >= 0 && col < cols && canJump(row: row, col: col){
+            visted[row,col] = true
+            count = 1 + canMovingCore(row: row - 1, col: col) +
+                        canMovingCore(row: row + 1, col: col) +
+                        canMovingCore(row: row, col: col - 1) +
+                        canMovingCore(row: row, col: col + 1)
+        }
+        return count
+    }
+    func canJump(row: Int, col: Int) -> Bool {
+        // 没访问过且和小于等于k
+        if visted[row,col] == false && (getDigNum(num: col) + getDigNum(num: row)) <= limit {
+            print("(\(row),\(col))")
+            return true
+        }
+        return false
+    }
+    
+    func getDigNum(num: Int) -> Int {
+        if num < 10 {
+            return num
+        }
+        var total = 0
+        var a = num
+        while a > 0 {
+            total += (a % 10)
+            a /= 10
+        }
+        return total
+    }
+}
