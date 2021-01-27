@@ -141,8 +141,8 @@ class ViewController: UIViewController {
 //        print(rotareMin(num: [3,4,5,6,7,8,1,2]))
         print(rotareMin(num: [8,1,2]))
 
-        getLongDecreaseSeq(num: [9,4,3,2,5,4,3,2])
-
+//        _ = getLongDecreaseSeq(num: [9,4,3,2,5,4,3,2])
+        print(MatrixPathSolution().generateParenthesis(nums: [["a","b","t","g"],["c","f","c","s"],["j","d","e","h"]], str: "bcg"))
     }
 }
 

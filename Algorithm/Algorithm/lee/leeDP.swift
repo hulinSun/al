@@ -494,6 +494,6 @@ func longestPalindrome4(_ s: String) -> String {
         }
     }
     print(dp)
-    print(longS)
+
     return longS
 }

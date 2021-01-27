@@ -263,33 +263,57 @@ class ParenthesisSolution {
 /// 矩阵中是否某个字符串的路径
 /// 只能上下左右移动一格
 class MatrixPathSolution {
-    private var sel: [Character]!
+        
     private var matrix: [[Character]]!
-    private var res: [String]!
+    private var cs: [Character]!
+    private var length = 0
+    private var visted: Array2D<Bool>!
+    private var rows = 0
+    private var cols = 0
     func generateParenthesis(nums:[[Character]], str: String) -> Bool {
-        if nums.count == 0 {
+        if nums.count == 0 || str.count == 0 {
             return false
         }
         matrix = nums
-        res = [String]()
-        dfs(idx: 0)
+        cs = Array<Character>(repeating: " ", count:str.count)
+        visted = Array2D<Bool>(columns: nums[0].count, rows: nums.count, initialValue: false)
         
-        for s in res {
-            if s == str {
-                return true
+        for (i,c) in str.enumerated() {
+            cs[i] = c
+        }
+        rows = nums.count
+        cols = nums[0].count
+        for r in 0..<nums.count {
+            for c in 0..<nums[0].count {
+                if hasPath(row: r, col: c) {
+                    return true
+                }
             }
         }
         return false
     }
     
-    func dfs(idx: Int) {
-        if idx == sel.count {
-            // 对比
-            let s = String(sel)
-            res.append(s)
-            return
+    func hasPath(row: Int,  col: Int) -> Bool {
+        if length == cs.count {
+            return true
         }
-        
-       
+        var has = false
+        if row >= 0 && row < rows  && col >= 0 && col < cols && visted[row,col] == false && matrix[row][col] == cs[length] {
+            print(matrix[row][col])
+            // 匹配到了
+            length += 1
+            visted[row,col] = true
+            has = hasPath(row: row - 1,col: col) ||
+                hasPath(row: row + 1, col: col) ||
+                hasPath(row: row, col: col - 1) ||
+                hasPath(row: row, col: col + 1)
+            
+            if has == false {
+                // 回溯
+                length -= 1
+                visted[row,col] = false
+            }
+        }
+        return has
     }
 }
