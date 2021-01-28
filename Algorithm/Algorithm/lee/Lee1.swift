@@ -806,3 +806,50 @@ func getLongDecreaseSeq(num: [Int]) -> Int {
     print(dp)
     return maxDp
 }
+
+
+/// 字符串数组 最长公共前缀
+func longestCommonPrefix(_ strs: [String]) -> String {
+    if strs.count == 0 {
+        return ""
+    }
+    var css = [[Character]]()
+    for str in strs {
+        var cs = Array<Character>(repeating: " ", count: str.count)
+        for (i,c) in str.enumerated() {
+            cs[i] = c
+        }
+        css.append(cs)
+    }
+    var res = [Character]()
+    // 从第一个字符串开始遍历
+    for idx in 0..<css[0].count {
+        // 取出第一个
+        let first = css[0][idx]
+        var allSame = true
+        for j in 1..<css.count {
+            // 字符串不相等的情况也要考虑下
+            if idx < css[j].count {
+                // 取出字符
+                if css[j][idx] != first {
+                    allSame = false
+                }
+            } else {
+                allSame = false
+            }
+        }
+        
+        if allSame {
+            // 前缀+
+            res.append(first)
+        } else {
+            break
+        }
+    }
+    if res.count == 0 {
+        return ""
+    }
+    let pre = String(res)
+    print(pre)
+    return pre
+}
