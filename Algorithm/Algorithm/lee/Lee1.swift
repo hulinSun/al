@@ -900,3 +900,50 @@ func removeDuplicates(_ nums: inout [Int]) -> Int {
     }
     return last
 }
+
+/// haystack 里找 needle 。返回第一个idx
+func strStr(_ haystack: String, _ needle: String) -> Int {
+    if needle.count == 0 || haystack.count == 0 {
+        return -1
+    }
+    if needle.count > haystack.count  {
+        return -1
+    }
+    var ns = [Character](repeating: " ", count: needle.count)
+    for (i,c) in needle.enumerated() {
+        ns[i] = c
+    }
+    var hs = [Character](repeating: " ", count: haystack.count)
+    for (i,c) in haystack.enumerated() {
+        hs[i] = c
+    }
+    var res = 0
+    var jfirst = 0
+    var contain = true
+    for (idx,c) in hs.enumerated() {
+        // 第一个
+        if c != ns[jfirst] {
+            continue
+        } else {
+            // 找到了第一个
+            while jfirst < ns.count {
+                if idx + jfirst < hs.count && ns[jfirst] == hs[idx + jfirst] {
+                    jfirst += 1
+                } else {
+                    // 超出边间了 或者不相等
+                    contain = false
+                    break
+                }
+            }
+            if contain {
+                res = idx
+                break
+            } else {
+                jfirst = 0
+                contain = true
+            }
+        }
+    }
+    print(res)
+    return res
+}
