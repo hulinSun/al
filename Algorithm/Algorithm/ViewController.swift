@@ -145,7 +145,7 @@ class ViewController: UIViewController {
 //        print(MatrixPathSolution().generateParenthesis(nums: [["a","b","t","g"],["c","f","c","s"],["j","d","e","h"]], str: "bcg"))
 //        print(MovingSolution().canMoveing(r: 18, c: 7, k: 15))
         
-        longestCommonPrefix(["cir","car"])
+//        longestCommonPrefix(["cir","car"])
     }
 }
 

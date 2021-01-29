@@ -853,3 +853,50 @@ func longestCommonPrefix(_ strs: [String]) -> String {
     print(pre)
     return pre
 }
+
+/// 是否是回文数
+func isPalindromeNum(_ x: Int) -> Bool {
+    if x < 0 {
+        return false
+    }
+    if x >= 0 && x < 10 {
+        return true
+    }
+    var nums = [Int]()
+    var temp = x
+    while temp > 0 {
+        let a = temp % 10
+        nums.append(a)
+        temp /= 10
+    }
+    var left = 0
+    var right = nums.count - 1
+    while left <= right {
+        if nums[left] == nums[right] {
+            left += 1
+            right -= 1
+        } else {
+            return false
+        }
+    }
+    return true
+}
+
+/// 原地删除，数组中重复的元素
+/// 返回数组的长度
+func removeDuplicates(_ nums: inout [Int]) -> Int {
+    if nums.count <= 1 {
+        return nums.count
+    }
+    // 第一个数不需要删除
+    var last = 1
+    for idx in 1..<nums.count {
+        // 取出这个数
+        let temp = nums[idx]
+        if temp != nums[idx - 1] {
+            nums[last] = temp
+            last += 1
+        }
+    }
+    return last
+}
