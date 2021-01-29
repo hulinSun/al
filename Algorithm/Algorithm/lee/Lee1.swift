@@ -947,3 +947,25 @@ func strStr(_ haystack: String, _ needle: String) -> Int {
     print(res)
     return res
 }
+
+/// 排序数组。
+/// 返回数组中第一个大于或等于它的idx
+func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+    if nums.count == 0 {
+        return 0
+    }
+    var left = 0
+    var right = nums.count - 1
+    var a = -1
+    while left <= right {
+        let mid = (left + right) / 2
+        // 找到了
+        if target <= nums[mid] {
+            a = mid
+            right = mid - 1
+        } else {
+            left = mid + 1
+        }
+    }
+    return a
+}

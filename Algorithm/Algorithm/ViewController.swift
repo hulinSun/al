@@ -146,7 +146,8 @@ class ViewController: UIViewController {
 //        print(MovingSolution().canMoveing(r: 18, c: 7, k: 15))
         
 //        longestCommonPrefix(["cir","car"])
-        _ = strStr("mississippi", "issip")
+//        _ = strStr("mississippi", "issip")
+        print(searchInsert([1,3,5,6], 2))
     }
 }
 
