@@ -310,6 +310,62 @@ func dailyTemperatures2(_ T: [Int]) -> [Int] {
 
 func dailyTemperaturesTest() {
     let nums =  [73, 74, 75, 71, 69, 72, 76, 73]
-    _ = dailyTemperatures2(nums)
-    _ = dailyTemperatures(nums)
+//    _ = dailyTemperatures2(nums)
+//    _ = dailyTemperatures(nums)
+//    _ = dailyTemperatures3(nums)
+    _ = dailyTemperatures4(nums)
+}
+
+
+func dailyTemperatures3(_ T: [Int]) -> [Int] {
+    if T.count == 0 {
+        return [Int]()
+    }
+    var res = Array<Int>(repeating: 0, count: T.count)
+    // 从后往前开始
+    for i in (0..<res.count - 1).reversed() {
+        var j = i + 1
+        while true {
+            if T[j] > T[i] {
+                res[i] = j - i
+                break
+            } else if T[j] == T[i] {
+                if res[j] == 0 {
+                    res[i] = 0
+                } else {
+                    res[i] = res[j] + j - i
+                }
+                break
+            } else {
+                // t[j] < t[i]
+                if res[j] == 0 {
+                    // 后面都没有比T[J]大了。那么肯定没有比t[i]大了
+                    res[i] = 0
+                    break
+                } else {
+                    j = j + res[j]
+                }
+            }
+        }
+    }
+    return res
+}
+
+/// 单调递减栈
+func dailyTemperatures4(_ T: [Int]) -> [Int] {
+    if T.count == 0 {
+        return [Int]()
+    }
+    var res = Array<Int>(repeating: 0, count: T.count)
+    let stack = AStack()
+    for i in 0..<T.count {
+        // 之前的数找到了大的数
+        while !stack.isEmpty() && T[stack.top()] < T[i] {
+            let topIdx = stack.pop()
+            res[topIdx] = i - topIdx
+        }
+        // 存之前的索引
+        stack.push(element: i)
+    }
+    return res
 }

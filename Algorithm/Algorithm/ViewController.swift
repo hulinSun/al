@@ -43,7 +43,7 @@ class ViewController: UIViewController {
 //        Lee1.test()
 //        windowTest()
 //        parentsTest()
-//        dailyTemperaturesTest()
+        dailyTemperaturesTest()
 //        isAnagramTest()
 //        reverseWordsTest()
 //        lengthOfLongestSubstringTest()
@@ -124,26 +124,20 @@ class ViewController: UIViewController {
 //        print(reverse(123))
 //        print(canJoin(num: [[5,10],[0,30],[15,20]]))
 //        print(canJoin(num: [[7,10],[2,4]]))
-        
 //        print(getMeetingCount(num: [[5,10],[0,30],[15,20]]))
-        
 //        _ = trap([0,1,0,2,1,0,1,3,2,1,2,1])
 //        print(containNum(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
 //        print(containNum2(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
-        
 //        _ = replaceSpace(str: "we are happy, yes we are")
-        
 //        let root = rebuild(pre: [1,2,4,7,3,5,6,8], inorder: [4,7,2,1,5,3,8,6])
 //        treeInorder(node: root)
 //        treepreorder(node: root)
-        
-
 //        print(rotareMin(num: [3,4,5,6,7,8,1,2]))
-        print(rotareMin(num: [8,1,2]))
-
 //        _ = getLongDecreaseSeq(num: [9,4,3,2,5,4,3,2])
-        print(MatrixPathSolution().generateParenthesis(nums: [["a","b","t","g"],["c","f","c","s"],["j","d","e","h"]], str: "bcg"))
-        print(MovingSolution().canMoveing(r: 18, c: 7, k: 15))
+        
+//        print(rotareMin(num: [8,1,2]))
+//        print(MatrixPathSolution().generateParenthesis(nums: [["a","b","t","g"],["c","f","c","s"],["j","d","e","h"]], str: "bcg"))
+//        print(MovingSolution().canMoveing(r: 18, c: 7, k: 15))
     }
 }
 
