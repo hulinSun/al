@@ -806,3 +806,166 @@ func getLongDecreaseSeq(num: [Int]) -> Int {
     print(dp)
     return maxDp
 }
+
+
+/// 字符串数组 最长公共前缀
+func longestCommonPrefix(_ strs: [String]) -> String {
+    if strs.count == 0 {
+        return ""
+    }
+    var css = [[Character]]()
+    for str in strs {
+        var cs = Array<Character>(repeating: " ", count: str.count)
+        for (i,c) in str.enumerated() {
+            cs[i] = c
+        }
+        css.append(cs)
+    }
+    var res = [Character]()
+    // 从第一个字符串开始遍历
+    for idx in 0..<css[0].count {
+        // 取出第一个
+        let first = css[0][idx]
+        var allSame = true
+        for j in 1..<css.count {
+            // 字符串不相等的情况也要考虑下
+            if idx < css[j].count {
+                // 取出字符
+                if css[j][idx] != first {
+                    allSame = false
+                }
+            } else {
+                allSame = false
+            }
+        }
+        
+        if allSame {
+            // 前缀+
+            res.append(first)
+        } else {
+            break
+        }
+    }
+    if res.count == 0 {
+        return ""
+    }
+    let pre = String(res)
+    print(pre)
+    return pre
+}
+
+/// 是否是回文数
+func isPalindromeNum(_ x: Int) -> Bool {
+    if x < 0 {
+        return false
+    }
+    if x >= 0 && x < 10 {
+        return true
+    }
+    var nums = [Int]()
+    var temp = x
+    while temp > 0 {
+        let a = temp % 10
+        nums.append(a)
+        temp /= 10
+    }
+    var left = 0
+    var right = nums.count - 1
+    while left <= right {
+        if nums[left] == nums[right] {
+            left += 1
+            right -= 1
+        } else {
+            return false
+        }
+    }
+    return true
+}
+
+/// 原地删除，数组中重复的元素
+/// 返回数组的长度
+func removeDuplicates(_ nums: inout [Int]) -> Int {
+    if nums.count <= 1 {
+        return nums.count
+    }
+    // 第一个数不需要删除
+    var last = 1
+    for idx in 1..<nums.count {
+        // 取出这个数
+        let temp = nums[idx]
+        if temp != nums[idx - 1] {
+            nums[last] = temp
+            last += 1
+        }
+    }
+    return last
+}
+
+/// haystack 里找 needle 。返回第一个idx
+func strStr(_ haystack: String, _ needle: String) -> Int {
+    if needle.count == 0 || haystack.count == 0 {
+        return -1
+    }
+    if needle.count > haystack.count  {
+        return -1
+    }
+    var ns = [Character](repeating: " ", count: needle.count)
+    for (i,c) in needle.enumerated() {
+        ns[i] = c
+    }
+    var hs = [Character](repeating: " ", count: haystack.count)
+    for (i,c) in haystack.enumerated() {
+        hs[i] = c
+    }
+    var res = 0
+    var jfirst = 0
+    var contain = true
+    for (idx,c) in hs.enumerated() {
+        // 第一个
+        if c != ns[jfirst] {
+            continue
+        } else {
+            // 找到了第一个
+            while jfirst < ns.count {
+                if idx + jfirst < hs.count && ns[jfirst] == hs[idx + jfirst] {
+                    jfirst += 1
+                } else {
+                    // 超出边间了 或者不相等
+                    contain = false
+                    break
+                }
+            }
+            if contain {
+                res = idx
+                break
+            } else {
+                jfirst = 0
+                contain = true
+            }
+        }
+    }
+    print(res)
+    return res
+}
+
+/// 排序数组。
+/// 返回数组中第一个大于或等于它的idx
+func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+    if nums.count == 0 {
+        return 0
+    }
+    var left = 0
+    var right = nums.count - 1
+    var a = -1
+    while left <= right {
+        let mid = (left + right) / 2
+        // 找到了
+        if target <= nums[mid] {
+            a = mid
+            right = mid - 1
+        } else {
+            left = mid + 1
+        }
+    }
+    return a
+}
