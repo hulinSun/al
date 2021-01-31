@@ -141,7 +141,13 @@ class ViewController: UIViewController {
         
 //        longestCommonPrefix(["cir","car"])
 //        _ = strStr("mississippi", "issip")
-        print(searchInsert([1,3,5,6], 2))
+//        print(searchInsert([1,3,5,6], 2))
+//        lengthOfLIS([10,9,2,5,3,7,101,18])
+//        lengthOfLIS([0,1,0,3,2,3])
+        lengthOfLIS( [4,10,4,3,8,9])
+       
+
+        
     }
 }
 

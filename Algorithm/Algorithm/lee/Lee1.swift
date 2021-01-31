@@ -969,3 +969,25 @@ func searchInsert(_ nums: [Int], _ target: Int) -> Int {
     }
     return a
 }
+
+/// https://leetcode-cn.com/problems/longest-increasing-subsequence/
+/// 最长递增子序列
+func lengthOfLIS(_ nums: [Int]) -> Int {
+    if nums.count == 0 {
+        return 0
+    }
+    var dp = Array<Int>(repeating: 1, count: nums.count)
+    // dp[i] 代表以i idx 结尾的递增子序列
+    /// dp[i] 与 dp[i - 1]
+    var maxL = 1
+    for idx in 1..<nums.count {
+        for j in 0..<idx {
+            if nums[idx] > nums[j] {
+                dp[idx] = max(dp[j] + 1, dp[idx])
+            }
+        }
+        maxL = max(maxL, dp[idx])
+    }
+    print(dp)
+    return maxL
+}

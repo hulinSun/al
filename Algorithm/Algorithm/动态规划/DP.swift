@@ -183,9 +183,9 @@ class DP {
         for i in 1..<nums.count {
             for j in 0..<i {
                 if nums[i] > nums[j] {
-                    dp[i] = dp[j] + 1
-                    maxLong = max(dp[i],maxLong)
+                    dp[i] = max(dp[j] + 1, dp[i])
                 }
+                maxLong = max(dp[i],maxLong)
             }
         }
         print(dp)

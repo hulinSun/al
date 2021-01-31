@@ -377,7 +377,6 @@ func mergeTwoLists2(_ l1: LeeListNode?, _ l2: LeeListNode?) -> LeeListNode? {
         l2?.next = mergeTwoLists2(l1, l2?.next)
         return l2
     }
-    return nil
 }
 
 
