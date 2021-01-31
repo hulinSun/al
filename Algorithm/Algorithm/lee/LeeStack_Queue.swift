@@ -8,19 +8,6 @@
 /// 栈， 队列相关
 import Foundation
 
-public class TreeNode {
-     public var val: Int
-     public var left: TreeNode?
-     public var right: TreeNode?
-     public init() { self.val = 0; self.left = nil; self.right = nil; }
-     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
-     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
-         self.val = val
-         self.left = left
-         self.right = right
-     }
-}
-
 
 /// 最小栈  https://leetcode-cn.com/problems/min-stack/
 /// 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
