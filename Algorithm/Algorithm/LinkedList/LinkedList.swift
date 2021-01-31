@@ -141,6 +141,27 @@ class LinkedList<T: Comparable> {
         }
     }
     
+    public func reverse2() {
+        if isEmpty() || size == 1{
+            print("链表为空或者只有头结点，无需反转")
+            return
+        }
+        var now = first
+        var newHead: Node? = nil
+        while now != nil {
+            let next = now?.next
+            let oldNewhead = newHead
+            newHead = now
+            newHead?.next = oldNewhead
+            
+            now = next
+        }
+        while newHead != nil {
+            print(newHead!)
+            newHead = newHead?.next
+        }
+    }
+    
     /** 递归法
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) return head;
@@ -338,24 +359,24 @@ class LinkedList<T: Comparable> {
         link.add(element: 7)
 //        link.add(element: 5)
         print(link)
-        print(link.getMiddleNode())
-        return;
+//        print(link.getMiddleNode())
+//        return;
         
-        link.add(index: 2, element: 199)
-        print(link)
+//        link.add(index: 2, element: 199)
+//        print(link)
+//
+//        _ = link.remove(index: 3)
+//        print(link)
+//
+//        print(link.indexOf(element: 199))
+//        print(link.contains(element: 5))
+//        print(link.get(index: 0))
+//        print(link.set(index: 1, element: 88))
+//        print(link)
+//        _ = link.remove(index: 2)
+//        print(link)
         
-        _ = link.remove(index: 3)
-        print(link)
-        
-        print(link.indexOf(element: 199))
-        print(link.contains(element: 5))
-        print(link.get(index: 0))
-        print(link.set(index: 1, element: 88))
-        print(link)
-        _ = link.remove(index: 2)
-        print(link)
-        
-        link.reverse()
+        link.reverse2()
         print(link)
     }
 }
