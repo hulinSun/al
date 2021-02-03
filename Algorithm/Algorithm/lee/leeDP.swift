@@ -497,3 +497,44 @@ func longestPalindrome4(_ s: String) -> String {
 
     return longS
 }
+
+/// 零钱兑换
+/// https://leetcode-cn.com/problems/coin-change/
+func coinChange(_ coins: [Int], _ amount: Int) -> Int {
+    if coins.count == 0 || amount <= 0{
+        return 0
+    }
+    if coins.count == 1 && coins[0] == amount {
+        return 1
+    }
+    // 默认所有金币都大于amount
+    var canChange = true
+    for item in coins {
+        if item <= amount {
+            canChange = true
+        } else {
+            canChange = false
+        }
+    }
+    if canChange == false {
+        return -1
+    }
+    
+    var dp = Array<Int>(repeating:amount + 1, count: amount + 1)
+    // 初始化
+    for item in coins {
+        dp[item] = 1
+    }
+    dp[0] = 0
+    // dp[i] 代表兑换i块钱最少需要多少枚硬币
+    for i in 1...amount {
+        // 默认第一个最小
+        for coin in coins {
+            if i >= coin {
+                dp[i] = min(dp[i - coin] + 1, dp[i])
+            }
+        }
+    }
+    print(dp)
+    return dp[amount] > amount ? -1 : dp[amount]
+}

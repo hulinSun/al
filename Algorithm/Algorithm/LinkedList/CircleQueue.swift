@@ -87,6 +87,7 @@ class CircleQueue {
         }
         print(queue)
         print("\(queue.deQueue()) 出队")
+        print(queue)
         print("\(queue.deQueue()) 出队")
         print(queue)
         queue.enQueue(element: 67)
