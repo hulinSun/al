@@ -97,11 +97,11 @@ extension BTNode : CustomStringConvertible {
 /// 添加这个只是想让Node可以添加到队列里去
 extension BTNode: Comparable {
     static func < (lhs: BTNode<T>, rhs: BTNode<T>) -> Bool {
-        return true
+        return lhs.element < rhs.element
     }
     
     static func == (lhs: BTNode<T>, rhs: BTNode<T>) -> Bool {
-        return false
+        return lhs.element == rhs.element
     }
 }
 

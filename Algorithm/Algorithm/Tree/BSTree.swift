@@ -52,7 +52,6 @@ class BSTree<T: Comparable>: BinaryTree<T> {
             } else {
                 // do nothing
             }
-            
         }
         size+=1
         afterAddNode(node: newNode)
