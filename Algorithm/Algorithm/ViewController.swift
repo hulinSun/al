@@ -124,20 +124,14 @@ class ViewController: UIViewController {
 //        print(reverse(123))
 //        print(canJoin(num: [[5,10],[0,30],[15,20]]))
 //        print(canJoin(num: [[7,10],[2,4]]))
-        
 //        print(getMeetingCount(num: [[5,10],[0,30],[15,20]]))
-        
 //        _ = trap([0,1,0,2,1,0,1,3,2,1,2,1])
 //        print(containNum(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
 //        print(containNum2(num: [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]], target: 7))
-        
 //        _ = replaceSpace(str: "we are happy, yes we are")
-        
 //        let root = rebuild(pre: [1,2,4,7,3,5,6,8], inorder: [4,7,2,1,5,3,8,6])
 //        treeInorder(node: root)
 //        treepreorder(node: root)
-        
-
 //        print(rotareMin(num: [3,4,5,6,7,8,1,2]))
 //        print(rotareMin(num: [8,1,2]))
 
@@ -148,8 +142,17 @@ class ViewController: UIViewController {
 //        longestCommonPrefix(["cir","car"])
 //        _ = strStr("mississippi", "issip")
 //        print(searchInsert([1,3,5,6], 2))
+
 //        print(countSubstrings("fdsklf"))
         print(countSubstrings2("aaa"))
+
+//        lengthOfLIS([10,9,2,5,3,7,101,18])
+//        lengthOfLIS([0,1,0,3,2,3])
+//        lengthOfLIS( [4,10,4,3,8,9])
+       
+//        print(coinChange([1, 2, 5], 11))
+        print(coinChange([2],3))
+        
     }
 }
 

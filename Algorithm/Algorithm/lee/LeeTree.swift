@@ -7,6 +7,27 @@
 
 import Foundation
 
+public class TreeNode: Comparable {
+    public static func < (lhs: TreeNode, rhs: TreeNode) -> Bool {
+        return lhs.val < rhs.val
+    }
+    
+    public static func == (lhs: TreeNode, rhs: TreeNode) -> Bool {
+        return lhs.val == rhs.val
+    }
+    
+     public var val: Int
+     public var left: TreeNode?
+     public var right: TreeNode?
+     public init() { self.val = 0; self.left = nil; self.right = nil; }
+     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+         self.val = val
+         self.left = left
+         self.right = right
+     }
+}
+
 /// 链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree
 /// 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 /// 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
@@ -327,3 +348,98 @@ func treepreorder(node: TreeNode?) {
     treepreorder(node: node?.right)
 }
 
+
+/// 二叉树合并
+/// https://leetcode-cn.com/problems/merge-two-binary-trees/
+func mergeTrees(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
+    func dfs(_ n1: TreeNode?, _ n2: TreeNode?) -> TreeNode?{
+        if n1 == nil || n2 == nil {
+            return n1 == nil ? n2 : n1
+        }
+        n1!.val += n2!.val
+        n1?.left = dfs(n1?.left, n2?.left)
+        n1?.right = dfs(n1?.right, n2?.right)
+        return n1
+    }
+    
+    if t1 == nil {
+        return t2
+    }
+    if t2 == nil {
+        return t1
+    }
+    return dfs(t1, t2)
+}
+
+/// 遍历做法
+/// 补0法
+func mergeTrees2(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
+    if t1 == nil {
+        return t2
+    }
+    if t2 == nil {
+        return t1
+    }
+    let q = LQueue<TreeNode>()
+    q.enQueue(element: t1!)
+    q.enQueue(element: t2!)
+    while !q.isEmpty() {
+        let n1 = q.deQueue()
+        let n2 = q.deQueue()
+        n1.val += n2.val
+        
+        if n1.left != nil && n2.left != nil {
+            q.enQueue(element: n1.left!)
+            q.enQueue(element: n2.left!)
+        }
+        if n1.left == nil || n2.left == nil {
+            let vn = n1.left == nil ? n2.left : n1.left
+            q.enQueue(element: vn!)
+            q.enQueue(element: TreeNode(0))
+        }
+        
+        if n1.right != nil && n2.right != nil{
+            q.enQueue(element: n1.right!)
+            q.enQueue(element: n2.right!)
+        }
+        
+        if n1.right == nil || n2.right == nil {
+            let vn = n1.right == nil ? n2.right : n1.right
+            q.enQueue(element: vn!)
+            q.enQueue(element: TreeNode(0))
+        }
+    }
+    return t1
+}
+
+func mergeTrees3(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
+    if t1 == nil {
+        return t2
+    }
+    if t2 == nil {
+        return t1
+    }
+    let q = LQueue<TreeNode>()
+    q.enQueue(element: t1!)
+    q.enQueue(element: t2!)
+    while !q.isEmpty() {
+        let n1 = q.deQueue()
+        let n2 = q.deQueue()
+        n1.val += n2.val
+        
+        if n1.left != nil && n2.left != nil {
+            q.enQueue(element: n1.left!)
+            q.enQueue(element: n2.left!)
+        } else if n1.left == nil {
+            n1.left = n2.left
+        }
+        
+        if n1.right != nil && n2.right != nil{
+            q.enQueue(element: n1.right!)
+            q.enQueue(element: n2.right!)
+        } else if n1.right == nil {
+            n1.right = n2.right
+        }
+    }
+    return t1
+}
