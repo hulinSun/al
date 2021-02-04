@@ -306,8 +306,8 @@ func palindromeLength(cs: [Character],  l: Int,  r: Int) -> Int {
     var left = l
     var right = r
     while left >= 0 && right < cs.count && left < right  && cs[left] == cs[right] {
-        left -= 1
-        right += 1
+        left += 1
+        right -= 1
     }
     return right - left - 1
 }

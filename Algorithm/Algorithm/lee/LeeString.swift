@@ -374,3 +374,95 @@ func replaceSpace(str: String) -> String {
     print(s)
     return s
 }
+
+/// 暴力法
+func countSubstrings(_ s: String) -> Int {
+    if s.count == 0 {
+        return 0
+    }
+    var cs = Array<Character>(repeating: " ", count: s.count)
+    for (i,c) in s.enumerated() {
+        cs[i] = c
+    }
+    // 单个字符串肯定是回文
+    var res = cs.count
+    for i in 0..<cs.count - 1 {
+        for j in i+1..<cs.count {
+            if isPalindrome(cs: cs, l: i, r: j) {
+                res += 1
+            }
+        }
+    }
+    print(isPalindrome(cs: cs, l: 0, r: cs.count - 1))
+    return res
+}
+
+func isPalindrome(cs: [Character],  l: Int,  r: Int) -> Bool {
+    var left = l
+    var right = r
+    while left >= 0 && right < cs.count && left < right {
+        if cs[left] == cs[right] {
+            left += 1
+            right -= 1
+        } else {
+            return false
+        }
+    }
+    return true
+}
+
+/// dp 法
+// dp中，存着有多少个回文子串
+func countSubstrings2(_ s: String) -> Int {
+    if s.count == 0 {
+        return 0
+    }
+    var cs = Array<Character>(repeating: " ", count: s.count)
+    for (i,c) in s.enumerated() {
+        cs[i] = c
+    }
+    var dp = Array2D<Bool>(columns: cs.count + 1, rows: cs.count + 1, initialValue: false)
+    
+    // dp[r,c]
+    for r in (0..<cs.count).reversed() {
+        for c in 0..<cs.count {
+            if r > c {
+                continue
+            } else {
+                // 单个字符串
+                if c == r {
+                    dp[r,c] = true
+                    print(String(cs[r...c]))
+                } else {
+                    // 两个字符串
+                    if c - r == 1 {
+                        if cs[c] == cs[r] {
+                            dp[r,c] = true
+                        }
+                    } else {
+                        // s[r + 1, c - 1] 是否是回文
+                        if c >= 1 && cs[c] == cs[r] && dp[r + 1, c - 1]{
+                            dp[r,c] = true
+                            print("dasd \(String(cs[r...c]))")
+                        } else {
+                            if c >= r {
+                                print("== \(String(cs[r...c]))")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    print(dp)
+    
+    var res = 0
+    for r in 0..<cs.count {
+        for c in 0..<cs.count {
+            if dp[r,c] == true {
+                res += 1
+            }
+        }
+    }
+    return res
+}
