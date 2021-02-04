@@ -149,7 +149,6 @@ class ViewController: UIViewController {
 //        lengthOfLIS([10,9,2,5,3,7,101,18])
 //        lengthOfLIS([0,1,0,3,2,3])
 //        lengthOfLIS( [4,10,4,3,8,9])
-       
 //        print(coinChange([1, 2, 5], 11))
         print(coinChange([2],3))
         

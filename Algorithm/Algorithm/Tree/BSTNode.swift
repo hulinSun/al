@@ -131,9 +131,9 @@ class BSTNode<T: Comparable>: CustomStringConvertible {
 /// 添加这个只是想让Node可以添加到队列里去
 extension BSTNode: Comparable {
     static func < (lhs: BSTNode<T>, rhs: BSTNode<T>) -> Bool {
-        return true
+        return lhs.element < rhs.element
     }
     static func == (lhs: BSTNode<T>, rhs: BSTNode<T>) -> Bool {
-        return false
+        return lhs.element == rhs.element
     }
 }
