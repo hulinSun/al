@@ -443,3 +443,19 @@ func mergeTrees3(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
     }
     return t1
 }
+
+/// 二叉树的最大深度
+func maxDepth(_ root: TreeNode?) -> Int {
+    if root == nil {
+        return 0
+    }
+    var left = 0
+    var right = 0
+    if root?.left != nil {
+        left = maxDepth(root?.left)
+    }
+    if root?.right != nil {
+        right = maxDepth(root?.right)
+    }
+    return max(left, right) + 1
+}
