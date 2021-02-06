@@ -443,3 +443,51 @@ func mergeTrees3(_ t1: TreeNode?, _ t2: TreeNode?) -> TreeNode? {
     }
     return t1
 }
+
+/// 二叉树的最大深度
+/// 递归解法
+func maxDepth(_ root: TreeNode?) -> Int {
+    if root == nil {
+        return 0
+    }
+    var left = 0
+    var right = 0
+    if root?.left != nil {
+        left = maxDepth(root?.left)
+    }
+    if root?.right != nil {
+        right = maxDepth(root?.right)
+    }
+    return max(left, right) + 1
+}
+
+/// 层序遍历法
+func maxDepth2(_ root: TreeNode?) -> Int {
+    if root == nil {
+        return 0
+    }
+    let q = LQueue<TreeNode>()
+    q.enQueue(element: root!)
+    /// 每一层有多少个节点
+    var levelSize = 1
+    var hight = 0
+    
+    while !q.isEmpty() {
+        let node = q.deQueue()
+        levelSize -= 1
+        if node.left != nil {
+            q.enQueue(element: node.left!)
+        }
+        if node.right != nil {
+            q.enQueue(element: node.right!)
+        }
+        // 都添加完毕之后，levelsize = q.size
+        if levelSize == 0 {
+            hight += 1
+            levelSize = q.size()
+        }
+    }
+    return hight
+}
+
+
