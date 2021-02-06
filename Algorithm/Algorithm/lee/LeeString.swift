@@ -466,3 +466,43 @@ func countSubstrings2(_ s: String) -> Int {
     }
     return res
 }
+
+/// https://leetcode-cn.com/problems/sort-characters-by-frequency/
+/// 根据字符出现评率排序
+func frequencySort(_ s: String) -> String {
+    print(s)
+    if s.count == 0 {
+        return ""
+    }
+    if s.count <= 2 {
+        return s
+    }
+    var dict = Dictionary<Character,Int>()
+    for c in s {
+        if let count = dict[c] , count > 0 {
+            dict[c] = count + 1
+        } else {
+            dict[c] = 1
+        }
+    }
+    var res = ""
+    while !dict.isEmpty {
+        // 找到value最大值
+        if let maxV = dict.values.max(), maxV > 0 {
+            for item in dict {
+                // 找到了这个key
+                if item.value == maxV {
+                    // 取出字符串
+                    let c = item.key
+                    var maxCount = maxV
+                    while maxCount > 0 {
+                        res.append(c)
+                        maxCount -= 1
+                    }
+                    dict.removeValue(forKey: c)
+                }
+            }
+        }
+    }
+    return res
+}
