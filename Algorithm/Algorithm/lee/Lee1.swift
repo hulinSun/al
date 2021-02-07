@@ -991,3 +991,21 @@ func lengthOfLIS(_ nums: [Int]) -> Int {
     print(dp)
     return maxL
 }
+
+/// 跳跃游戏，是否可达
+/// 贪心算法，每个位置都计算自己能达到的最远距离，同时每个位置要判断自己是否可达，也就是本位置需要在当前最远能到达的距离中。最终计算出来能到达的最远距离，与数组长度比较即可。
+func canJump(_ nums: [Int]) -> Bool {
+    if nums.count == 0 {
+        return false
+    }
+    var rightMost = 0
+    for (idx,item) in nums.enumerated() {
+        if idx <= rightMost {
+            rightMost = max(idx + item, rightMost)
+        }
+    }
+    if rightMost >= nums.count - 1{
+        return true
+    }
+    return false
+}
