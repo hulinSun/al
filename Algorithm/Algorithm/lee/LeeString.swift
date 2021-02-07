@@ -506,3 +506,36 @@ func frequencySort(_ s: String) -> String {
     }
     return res
 }
+
+/// https://leetcode-cn.com/problems/group-anagrams/
+/// 字母异位词数组
+func groupAnagrams(_ strs: [String]) -> [[String]] {
+    func getSortKey(str: String) -> String {
+        var cs = Array<Character>(repeating: " ", count: str.count)
+        for (i,c) in str.enumerated() {
+            cs[i] = c
+        }
+        cs.sort(by: <)
+        return String(cs)
+    }
+    
+    if strs.count == 0 {
+        return [[String]]()
+    }
+    var res = [[String]]()
+    var dict = Dictionary<String,Array<String>>()
+    for str in strs {
+        // 求出排好序的key
+        let key = getSortKey(str: str)
+        if var subs = dict[key] {
+            subs.append(str)
+            dict[key] = subs
+        } else {
+            dict[key] = [str]
+        }
+    }
+    for item in dict {
+        res.append(item.value)
+    }
+    return res
+}
