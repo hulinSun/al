@@ -560,3 +560,36 @@ func mergeTwoLists3(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         return l2
     }
 }
+
+/// https://leetcode-cn.com/problems/rotate-list/
+/// 旋转k链表
+func rotateRight(_ head: LeeListNode?, _ k: Int) -> LeeListNode? {
+    func reverse(_ node: LeeListNode?) -> LeeListNode? {
+        if head == nil {
+            return nil
+        }
+        let newHead = reverse(node?.next)
+        node?.next?.next = node
+        node?.next = nil
+        return newHead
+    }
+    
+    if head == nil  {
+        return nil
+    }
+    /// 第一遍反转
+    let newH = reverse(head)
+    
+    // 单个反转
+    return newH
+}
+
+/// 旋转k链表
+/// 方法2
+func rotateRight2(_ head: LeeListNode?, _ k: Int) -> LeeListNode? {
+
+    /// 链表连成环
+    return nil
+}
+
+
