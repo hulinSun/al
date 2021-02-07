@@ -152,6 +152,7 @@ class ViewController: UIViewController {
 //        print(coinChange([1, 2, 5], 11))
 //        print(coinChange([2],3))
         
+        print(frequencySort("sddddsadsff"))
     }
 }
 
