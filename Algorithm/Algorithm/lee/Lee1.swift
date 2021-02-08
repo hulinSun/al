@@ -1009,3 +1009,26 @@ func canJump(_ nums: [Int]) -> Bool {
     }
     return false
 }
+
+/// https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
+/// 数组中第k个最大元素
+func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
+    if nums.count == 0 {
+        return 0
+    }
+    if nums.count < k {
+        return 0
+    }
+    // 最小堆
+    let heap = BinaryHeap(element: nil, compare: <)
+    for item in nums {
+        if heap.size < k {
+            heap.add(ele: item)
+        } else {
+            if heap.get() < item {
+                _ = heap.replace(ele: item)
+            }
+        }
+    }
+    return heap.get()
+}

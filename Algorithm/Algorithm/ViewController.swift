@@ -153,7 +153,8 @@ class ViewController: UIViewController {
 //        print(coinChange([2],3))
         
 //        print(frequencySort("sddddsadsff"))
-        print(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+//        print(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+        print(findKthLargest([1,2,3,4,5,6,7,8,9], 4))
     }
 }
 
