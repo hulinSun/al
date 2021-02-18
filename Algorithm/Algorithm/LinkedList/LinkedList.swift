@@ -310,9 +310,9 @@ class LinkedList<T: Comparable> {
         assert(first != nil, "List is empty")
         
         var slow = first
-        var fast = first
+        var fast = first?.next
         
-        while fast?.next != nil && fast?.next?.next != nil {
+        while fast != nil && fast?.next != nil  {
             slow = slow?.next
             fast = fast?.next?.next
         }
