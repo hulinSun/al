@@ -154,7 +154,20 @@ class ViewController: UIViewController {
         
 //        print(frequencySort("sddddsadsff"))
 //        print(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
-        print(findKthLargest([1,2,3,4,5,6,7,8,9], 4))
+//        print(findKthLargest([1,2,3,4,5,6,7,8,9], 4))
+        // 链表排序
+        sortListTest()
+    }
+    
+    func sortListTest() {
+        let head = ListNode(4)
+        let n1 = ListNode(1)
+        let n2 = ListNode(2)
+        let n3 = ListNode(3)
+        head.next = n1
+        n1.next = n2
+        n2.next = n3
+        sortList(head)
     }
 }
 

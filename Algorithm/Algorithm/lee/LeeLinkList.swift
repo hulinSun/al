@@ -587,9 +587,68 @@ func rotateRight(_ head: LeeListNode?, _ k: Int) -> LeeListNode? {
 /// 旋转k链表
 /// 方法2
 func rotateRight2(_ head: LeeListNode?, _ k: Int) -> LeeListNode? {
-
     /// 链表连成环
     return nil
 }
 
+/// 排序链表
+/// https://leetcode-cn.com/problems/sort-list/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china
+func sortList(_ head: ListNode?) -> ListNode? {
+    // 合并两个有序链表
+    func merge(_ left: ListNode?, _ right: ListNode?) -> ListNode? {
+        if left == nil {
+            return right
+        }
+        if right == nil {
+            return left
+        }
+        // 两个都有值
+        let dummpy = ListNode(-1)
+        var last: ListNode? = dummpy
+        var h1 = left
+        var h2 = right
+        while h1 != nil && h2 != nil {
+            if h1!.val < h2!.val {
+                last?.next = h1
+                h1 = h1?.next
+            } else {
+                last?.next = h2
+                h2 = h2?.next
+            }
+            last = last?.next
+        }
+        // h1剩下的
+        while h1 != nil {
+            last?.next = h1
+            h1 = h1?.next
+            last = last?.next
+        }
+        while h2 != nil {
+            last?.next = h2
+            h2 = h2?.next
+            last = last?.next
+        }
+        return dummpy.next
+    }
+    
+    if head == nil || head?.next == nil {
+        return head
+    }
+    // 找到中点，左右归并
+    var slow = head
+    var fast = head?.next
+    while fast != nil && fast?.next != nil {
+        slow = slow?.next
+        fast = fast?.next?.next
+    }
+    // 中点slow
+    let rightHead = slow?.next
+    slow?.next = nil // 切断
+    
+    let left = sortList(head)
+    let right = sortList(rightHead)
+    
+    // 合并两个有序链表
+    return merge(left, right)
+}
 
