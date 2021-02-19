@@ -1032,3 +1032,33 @@ func findKthLargest(_ nums: [Int], _ k: Int) -> Int {
     }
     return heap.get()
 }
+
+/// https://leetcode-cn.com/problems/task-scheduler/solution/
+/// 任务处理器
+func leastInterval(_ tasks: [Character], _ n: Int) -> Int {
+    if tasks.count == 0 {
+        return 0
+    }
+    if tasks.count == 1 {
+        return 1
+    }
+    var times = Array<Int>(repeating: 0, count: 26)
+    for item in tasks {
+        // 计算aci
+        let idx = Int(item.asciiValue! - Character("A").asciiValue!)
+        times[idx] += 1
+    }
+    // 找到出现次数最多的，优先安排它
+    times.sort(by: >)
+    var lastCount = 1
+    let maxTimes = times.first!
+    for idx in 1..<times.count {
+        if times[idx - 1] == times[idx] {
+            lastCount += 1
+        } else {
+            break
+        }
+    }
+    let res = (maxTimes - 1) * (n + 1) + lastCount
+    return max(res, tasks.count)
+}

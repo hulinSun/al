@@ -156,7 +156,9 @@ class ViewController: UIViewController {
 //        print(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 //        print(findKthLargest([1,2,3,4,5,6,7,8,9], 4))
         // 链表排序
-        sortListTest()
+//        sortListTest()
+//        print(longestPalindrome6("cbbd"))
+        leastInterval(["a","n","a","a","c"],2)
     }
     
     func sortListTest() {

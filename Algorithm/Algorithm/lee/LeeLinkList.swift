@@ -594,7 +594,7 @@ func rotateRight2(_ head: LeeListNode?, _ k: Int) -> LeeListNode? {
 /// 排序链表
 /// https://leetcode-cn.com/problems/sort-list/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china
 func sortList(_ head: ListNode?) -> ListNode? {
-    // 合并两个有序链表
+    // 合并两个链表
     func merge(_ left: ListNode?, _ right: ListNode?) -> ListNode? {
         if left == nil {
             return right
