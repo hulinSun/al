@@ -1060,5 +1060,6 @@ func leastInterval(_ tasks: [Character], _ n: Int) -> Int {
         }
     }
     let res = (maxTimes - 1) * (n + 1) + lastCount
+    // 不存在冷却时间的话，那么就是task的大小
     return max(res, tasks.count)
 }
