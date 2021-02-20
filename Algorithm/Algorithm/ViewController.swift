@@ -158,7 +158,8 @@ class ViewController: UIViewController {
         // 链表排序
 //        sortListTest()
 //        print(longestPalindrome6("cbbd"))
-        leastInterval(["a","n","a","a","c"],2)
+//        leastInterval(["A","B","A","N","C"],2)
+        minPathSum2([[1,2,3],[4,5,6]])
     }
     
     func sortListTest() {

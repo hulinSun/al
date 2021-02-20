@@ -1063,3 +1063,47 @@ func leastInterval(_ tasks: [Character], _ n: Int) -> Int {
     // 不存在冷却时间的话，那么就是task的大小
     return max(res, tasks.count)
 }
+
+/// 旋转数组
+/// https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/
+func search2(_ nums: [Int], _ target: Int) -> Int {
+    if nums.count == 0 {
+        return -1
+    }
+    if nums.count == 1 {
+        if nums.first! != target  {
+            return -1
+        } else {
+            return 0
+        }
+    }
+    // 大于两个
+    var left = 0
+    var right = nums.count - 1
+    let count = nums.count
+    while left <= right {
+        let mid = (left + right) >> 1
+        if nums[mid] == target {
+            return mid
+        }
+        // 判断mid在那一边
+        // 左边有序
+        if nums[mid] > nums[0] {
+            // target 在 【left mid】 里
+            if target >= nums[0] && target < nums[mid] {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            // 右边有序
+            // 【mid  right】
+            if target > nums[mid] && target <= nums[count - 1] {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+    return 0
+}

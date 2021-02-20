@@ -559,3 +559,32 @@ public class Solution {
     }
 }
  */
+
+func minPathSum2(_ grid: [[Int]]) -> Int {
+    if grid.count == 0 {
+        return 0
+    }
+    let row = grid.count
+    let col = grid[0].count
+    // dp[i,j] 代表到【i，j】的最小和
+    // dp[i,0] dp[0,j] 默认值
+    var dp = Array2D(columns: col, rows: row, initialValue: 0)
+    dp[0,0] = grid[0][0]
+    // 第一行
+    for idx in 1..<col {
+        dp[0,idx] = dp[0,idx - 1] + grid[0][idx]
+    }
+    // 第一列
+    for idx in 1..<row {
+        dp[idx,0] = dp[idx - 1, 0] + grid[idx][0]
+    }
+    for r in 1..<row {
+        for c in 1..<col {
+            // 取出值比较下
+            let minValue = min(dp[r,c - 1], dp[r - 1,c]) + grid[r][c]
+            dp[r,c] = minValue
+        }
+    }
+    print(dp)
+    return dp[row - 1, col - 1]
+}
