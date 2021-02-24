@@ -1127,3 +1127,32 @@ func maxProfit1(_ prices: [Int]) -> Int {
     }
     return maxP
 }
+
+func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+    let m = nums1.count
+    let n = nums2.count
+    let len = m + n
+    var pre = -1
+    var last = -1
+    var p1 = 0
+    var p2 = 0
+    
+    var i = 0
+    while  i <= len / 2 {
+        pre = last
+        if p1 < m && (p2 >= n || nums1[p1] < nums2[p2]) {
+            last = nums1[p1]
+            p1 += 1
+        } else {
+            last = nums2[p2]
+            p2 += 1
+            
+        }
+        i += 1
+    }
+    if len % 2 == 0 {
+        return Double(pre + last) / Double(2.0)
+    } else {
+        return Double(last)
+    }
+}

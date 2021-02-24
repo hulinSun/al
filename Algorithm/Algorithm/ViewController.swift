@@ -160,7 +160,8 @@ class ViewController: UIViewController {
 //        print(longestPalindrome6("cbbd"))
 //        leastInterval(["A","B","A","N","C"],2)
 //        minPathSum2([[1,2,3],[4,5,6]])
-        DP.longestIncreastSeq()
+//        DP.longestIncreastSeq()
+        print(findMedianSortedArrays([1,2],[3,4]))
     }
     
     func sortListTest() {
