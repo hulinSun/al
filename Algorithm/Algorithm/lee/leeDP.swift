@@ -78,10 +78,11 @@ func maxProfit(_ prices: [Int]) -> Int {
     var minBuy = prices.first!
     for idx in 1..<prices.count {
         let current = prices[idx]
+        maxprofit = max(maxprofit, current - minBuy)
+        // 今天卖完之后，更新下是否最低
         if current < minBuy {
             minBuy = current
         }
-        maxprofit = max(maxprofit, current - minBuy)
     }
     return maxprofit
 }
