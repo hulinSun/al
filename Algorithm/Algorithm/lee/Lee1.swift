@@ -1107,3 +1107,23 @@ func search2(_ nums: [Int], _ target: Int) -> Int {
     }
     return 0
 }
+
+/// 股票的最大利润
+func maxProfit1(_ prices: [Int]) -> Int {
+    if prices.count == 0 {
+        return 0
+    }
+    // 找前i天的最小值
+    var minPre = prices[0]
+    var maxP = 0
+    for idx in 1..<prices.count {
+        let cur = prices[idx]
+        // 今天的利润
+        maxP = max(maxP, cur - minPre)
+        // 过了今天，比较下最低的价格
+        if cur < minPre {
+            minPre = cur
+        }
+    }
+    return maxP
+}
