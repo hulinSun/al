@@ -162,7 +162,9 @@ class ViewController: UIViewController {
 //        minPathSum2([[1,2,3],[4,5,6]])
 //        DP.longestIncreastSeq()
 //        print(findMedianSortedArrays([1,2],[3,4]))
-        maxProductAfterCuting(length: 10)
+//        maxProductAfterCuting(length: 10)
+//        print(numberOfOne(num: 9))
+        print(myPow(base: 2, num: 4))
     }
     
     func sortListTest() {
