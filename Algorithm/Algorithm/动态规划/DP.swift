@@ -370,3 +370,39 @@ extension DP {
         print(array)
     }
 }
+
+
+/// 剪绳子
+/// 长度为N的绳子，剪成M段。 n1*n2*n3.. 最大和
+func maxProductAfterCuting(length: Int) -> Int {
+    if length == 0 {
+        return 0
+    }
+    if length == 1 {
+        return length
+    }
+    if length == 2 {
+        return 1
+    }
+    if length == 3 {
+        // 1 * 2
+        return 2
+    }
+    var dp = Array<Int>(repeating: 0, count: length + 1)
+    dp[0] = 0
+    dp[1] = 1
+    dp[2] = 1
+    dp[3] = 2
+    for idx in 4..<length {
+        var maxP = 0
+        for i in 1...idx/2 {
+            let v = dp[i] * dp[idx - i]
+            if maxP < v {
+                maxP = v
+                dp[idx] = maxP
+            }
+        }
+    }
+    print(dp)
+    return dp[length]
+}
