@@ -1156,3 +1156,33 @@ func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
         return Double(last)
     }
 }
+
+/// 二进制1的个数
+func numberOfOne(num: Int) -> Int {
+    var n = num
+    var count = 0
+    while n > 0 {
+        if n & 1 == 1 {
+            count += 1
+        }
+        n = n >> 1
+    }
+    return count
+}
+
+/// pow
+func myPow(base: Int, num: Int) -> Int {
+    if num == 0 {
+        return 1
+    }
+    if num == 1 {
+        return base
+    }
+    var res = myPow(base: base, num: num >> 1)
+    res *= res
+    // 基数
+    if num & 1 == 1 {
+        res *= base
+    }
+    return res
+}
