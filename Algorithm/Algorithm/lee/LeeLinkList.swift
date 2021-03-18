@@ -652,3 +652,234 @@ func sortList(_ head: ListNode?) -> ListNode? {
     return merge(left, right)
 }
 
+/// LFU
+/// https://leetcode-cn.com/problems/lfu-cache/solution/java-13ms-shuang-100-shuang-xiang-lian-biao-duo-ji/
+
+class LFUNode: CustomStringConvertible {
+    var pre: LFUNode?
+    var next: LFUNode?
+    var key: Int
+    var value: Int
+    var count: Int = 0
+    
+    init(k: Int, v: Int) {
+        key = k
+        value = v
+    }
+    var description: String {
+        get{
+            return "【\(key):\(value)】"
+        }
+    }
+}
+
+/// 双向链表
+class LFULinkList {
+    var head: LFUNode?
+    var tail: LFUNode?
+    var size: Int = 0
+    
+    func isEmpty() -> Bool {
+        return size == 0
+    }
+    
+    func insertToHead(node: LFUNode) {
+        if isEmpty() {
+            head = node
+            tail = node
+        } else {
+            head?.pre = node
+            node.next = head
+            head = node
+        }
+        size += 1
+    }
+    
+    /// 删除最久未使用的
+    func removeTail() -> Int {
+        if isEmpty() {
+            return -1
+        }
+        return remove(node: tail!)
+    }
+    
+    func remove(node: LFUNode) -> Int {
+        if isEmpty() {
+            return -1
+        }
+        if size == 1 {
+            let v = head!.key
+            if node === head {
+                head = nil
+                tail = nil
+                size = 0
+                return v
+            } else {
+                print("非法删除")
+            }
+        } else {
+            size -= 1
+            /// 删除的是头结点
+            if node === head {
+                let v = head!.key
+                let willHead = head?.next
+                willHead?.pre = nil
+                head?.next = nil
+                head = willHead
+                return v
+            }
+            /// 删除的是尾节点
+            if node === tail {
+                let v = tail!.key
+                let willTail = tail?.pre
+                willTail?.next = nil
+                tail?.pre = nil
+                tail = willTail
+                return v
+            }
+            let v = node.value
+            // 删除自己在feq链表中
+            let pre = node.pre
+            let next = node.next
+            pre?.next = next
+            next?.pre = pre
+            return v
+        }
+        return -1
+    }
+}
+
+class LFUCache {
+  
+    // key -> node
+    var nodes: [Int: LFUNode]
+    // feq -> list
+    var feqs: [Int: LFULinkList]
+    var cap: Int
+    var minFeq = Int.max
+    init(_ capacity: Int) {
+        cap = capacity
+        nodes = [Int : LFUNode](minimumCapacity: cap)
+        feqs = [Int : LFULinkList](minimumCapacity: cap)
+    }
+    
+    func get(_ key: Int) -> Int {
+        if nodes.isEmpty {
+            return -1
+        }
+        guard let node = nodes[key] else {
+            return -1
+        }
+        // 获取频次
+        let feq = node.count
+        let value = node.value
+        guard let curList = feqs[feq] else {
+            return 0
+        }
+        _ = curList.remove(node: node)
+        if curList.isEmpty() {
+            feqs[feq] = nil
+        }
+        node.next = nil
+        node.pre = nil
+        
+        // 新链表中
+        let newFeqList = feqs[feq + 1] ?? LFULinkList()
+        newFeqList.insertToHead(node: node)
+        node.count = feq + 1
+        feqs[feq + 1] = newFeqList
+        nodes[node.key] = node
+        if feq == minFeq {
+            // 重新计算minFeq
+            minFeq = Int.max
+            for (_,item) in nodes.enumerated() {
+                minFeq = min((minFeq), item.value.count)
+            }
+        }
+        return value
+    }
+    
+    func put(_ key: Int, _ value: Int) {
+        // 添加之前淘汰
+        if nodes.keys.count == cap && !nodes.keys.contains(key) {
+            guard let minList = feqs[minFeq] else {
+                return
+            }
+            let k = minList.removeTail()
+            if minList.isEmpty() {
+             feqs[minFeq] = nil
+            }
+            if k != -1 {
+                nodes[k] = nil
+            }
+            minFeq = Int.max
+            for (_,item) in nodes.enumerated() {
+                minFeq = min(minFeq, item.value.count)
+            }
+        }
+        
+        // 已经存在了
+        if let node = nodes[key] {
+            // 获取频次
+            let feq = node.count
+            if let curList = feqs[feq] {
+                _ = curList.remove(node: node)
+            }
+            node.next = nil
+            node.pre = nil
+            // 新链表中
+            let newFeqList = feqs[feq + 1] ?? LFULinkList()
+            newFeqList.insertToHead(node: node)
+            node.count = feq + 1
+            node.value = value
+            nodes[key] = node
+            feqs[node.count] = newFeqList
+            minFeq = min(minFeq, node.count)
+        } else {
+            let nd = LFUNode(k: key, v: value)
+            nd.count = 1
+            nodes[key] = nd
+            let newFeqList = feqs[nd.count] ?? LFULinkList()
+            newFeqList.insertToHead(node: nd)
+            feqs[nd.count] = newFeqList
+            minFeq = min(minFeq, nd.count)
+        }
+    }
+}
+
+extension LFULinkList: CustomStringConvertible {
+    public var description: String {
+        var s = "size: \(size), content: [ "
+        var node = head
+        while let nd = node {
+            s += nd.description
+            node = nd.next
+        }
+        return s + "]"
+    }
+}
+//"get","put", "get","get",  "put","get","get","get"]
+//[1],  [3,3],  [2],  [3],   [4,4],  [1],  3],   [4]]
+
+extension LFUCache {
+    public class func LFUCacheTest() {
+        let c = LFUCache(2)
+        
+        c.put(3, 1)
+        c.put(2, 1)
+        c.put(2, 2) //  1 3
+        c.put(4, 4)
+        print(c.get(2)) // 没有值 -1
+        
+//        c.put(1, 1)
+//        c.put(2, 2)
+//        print(c.get(1))
+//        c.put(3, 3) //  1 3
+//        print(c.get(2)) // 没有值 -1
+//        print(c.get(3)) // 没有值 3
+//        c.put(4, 4)
+//        print(c.get(1)) // 没有值 -1
+//        print(c.get(3)) // 没有值 -1
+//        print(c.get(4)) // 没有值 -1
+    }
+}

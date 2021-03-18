@@ -446,9 +446,9 @@ class ArrayList {
 
 
 class combinationSumSolution {
-    
     /// 给一个数组，和 目标值，算出所有和为target的组合
     public func combinationSums(nums: [Int], target: Int) -> [[Int]] {
+        print(nums)
         if nums.count == 0 {
             return [[Int]()]
         }
@@ -461,6 +461,7 @@ class combinationSumSolution {
     }
     
     public func dfs(sel: inout [Int], target: Int, result: inout [[Int]], nums: [Int], idx: Int) {
+        print("dad \(idx)  sel = \(sel)")
         if target == 0 {
             result.append(sel)
             return

@@ -287,5 +287,3 @@ extension BinaryHeap {
         heap.display()
     }
 }
-
-//【 81, 83, 98, 87, 85 】
